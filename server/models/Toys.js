@@ -9,7 +9,7 @@ const toysSchema = new Schema({
         type: Number,
         required: true
     },
-    imageURL : {
+    imageURL: {
         type: String,
         required: true
     },
@@ -22,4 +22,6 @@ const toysSchema = new Schema({
     }
 });
 
-module.exports = toysSchema;
+const Toys = model('Toys', toysSchema);
+
+module.exports = Toys;
