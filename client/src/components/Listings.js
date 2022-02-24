@@ -6,6 +6,14 @@ import listings from "./toysData.json";
 
 console.log(listings)
 
+const modalImageStyle = {
+    maxHeight: "600px"
+}
+
+const listStyle = {
+    listStyleType: "none"
+}
+
 
 function Listings() {
 
@@ -32,6 +40,12 @@ function Listings() {
         setModal(true);
     };
 
+    const [showCommentModal, setCommentModal] = useState(false);
+
+    const closeCommentModal = () => {
+        setCommentModal(false);
+    }
+
     return (
         <section className="mainSection container">
             <div className="row">
@@ -42,14 +56,13 @@ function Listings() {
             <div className="row">
                 {listings.map(e => (
                     <div className="col">
-                        <Toy name={e.name} imageURL={e.imageURL} price={e.price} owner={e.owner} description={e.description} showToyModal={showToyModal} key={e.name}/>
+                        <Toy name={e.name} imageURL={e.imageURL} price={e.price} owner={e.owner} description={e.description} showToyModal={showToyModal} key={e.name} />
                     </div>
                 ))}
 
             </div>
 
-            {/* <div className="modal" tabindex="-1" role="dialog" id="projectModal"> */}
-            <Modal size="xl" show={showModal} className="modal" tabIndex="-1" role="dialog" id="toyModal">
+            <Modal size="lg" show={showModal} className="modal" tabIndex="-1" role="dialog" id="toyModal">
                 <div className="modal-dialog modal-xl" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -58,18 +71,43 @@ function Listings() {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body text-center" id="modalBody">
-                            <img src={imageURL} alt="toy Example" />
-                            {price}
-                            {owner}
-                            {description}
+                        <div className="modal-body text-center">
+                            <img src={imageURL} alt="toy Example" style={modalImageStyle} />
+
+                            <ul style={listStyle}>
+                                <li>
+                                    Price: ${price}
+                                </li>
+                                <li>
+                                    Owner: {owner}
+                                </li>
+                                <li>
+                                    Description: {description}
+                                </li>
+                                <li>
+                                    <button className="btn btn-primary" onClick={() => setCommentModal(true)}>Comment</button>
+                                </li>
+                            </ul>
                             <div>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* </div> */}
+            </Modal>
+            <Modal size="md" show={showCommentModal} className="modal" tabIndex="-1" role="dialog">
+                <div className="modal-dialog modal-xl" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="modalTitle">Comments</h5>
+                            <button type="button" className="close" aria-label="Close" onClick={() => closeCommentModal()}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body text-center">
+
+                        </div>
+                    </div>
+                </div>
             </Modal>
         </section>
     )
