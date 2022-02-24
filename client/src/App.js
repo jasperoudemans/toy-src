@@ -3,6 +3,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 // import Footer from "./components/Footer";
 // import Splash from "./components/Splash";
+import Listings from "./components/Listings";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Nav />
         {/* <Splash/> */}
         {/* <Footer /> */}
+        <Listings/>
       </div>
     </Router>
   );
