@@ -24,18 +24,28 @@ type Toys {
     description: String!
 }
 
+type Comments {
+    _id: ID
+    comment: String!
+    owner: String!
+    date: String
+}
+
 type Query {
     me: User
     users: [User]
     toys: [Toys]
+    comments: [Comments]
 }
 
 type Mutation {
     addUser(username: String!, email: String!, password: String!) : Auth
     login(email: String!, password: String!) : Auth
 
-    addToy(name: String!, price: Int!, imageURL: String!, owner: String!, description: String!) : Toy
-    removeToy(toyID: ID!) : Toy
+    addToy(name: String!, price: Int!, imageURL: String!, owner: String!, description: String!) : Toys
+    removeToy(toyID: ID!) : Toys
+
+    addComment(comment: String!, owner: String!, date: String!): Comments
 }
 `;
 
