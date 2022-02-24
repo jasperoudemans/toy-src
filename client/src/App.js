@@ -6,7 +6,7 @@ import "./App.css";
 
 //Components///////////////////////////////////////////////////
 import Nav from "./components/Nav";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 // import Splash from "./components/Splash";
 import Listings from "./components/Listings";
 
@@ -38,7 +38,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
+        <div id="root">
           <Nav />
           {/* <Splash/> */}
           {/* <Footer /> */}
