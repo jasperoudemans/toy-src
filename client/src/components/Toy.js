@@ -31,8 +31,8 @@ function Toy({ name, imageURL, price, owner, description, showToyModal }) {
         />
       </div>
       <div className="card-body">
-        <h5 className="card-title">{name}</h5>
-        <h5 className="card-title">{price}</h5>
+        <h5 className="card-title">Item: {name}</h5>
+        <h5 className="card-title">Price: ${price}</h5>
       </div>
     </div>
   );
