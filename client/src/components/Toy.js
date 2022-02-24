@@ -35,6 +35,5 @@ function Toy({ name, imageURL, price, owner, description, showToyModal }) {
       </div>
     </div>
   );
-}
 
 export default Toy;
