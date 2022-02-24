@@ -8,7 +8,7 @@ import Listings from "./components/Listings";
 function App() {
   return (
     <Router>
-      <div>
+      <div id="root">
         <Nav />
         {/* <Splash/> */}
         <Listings />
