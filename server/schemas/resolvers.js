@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Toys } = require("../models");
+const { User, Toys, Comments } = require("../models");
 const { signToken } = require('../models/utils/auth');
 
 const resolvers = {
@@ -15,6 +15,9 @@ const resolvers = {
         },
         toys: async () => {
             return Toys.find({});
+        },
+        comments: async () => {
+            return Comments.find({});
         }
     },
     Mutation: {
@@ -42,6 +45,10 @@ const resolvers = {
         removeToy: async (parent, {id}) => {
             const toy = await Toys.findOneAndDelete({_id: id});
             return toy;
+        },
+        addComment: async (parent, {comment, owner, date}) => {
+            const comment = await Comments.create({comment, owner, date});
+            return comment;
         }
     }
 };
