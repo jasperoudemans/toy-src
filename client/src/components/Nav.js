@@ -2,16 +2,22 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="">Dashboard</Link>
+    <nav className="nav">
+      <ul className="flex">
+        <li className="navBtn">
+          <Link to="" className="navBtnTxt">
+            Dashboard
+          </Link>
         </li>
-        <li>
-          <Link to="">My Profile</Link>
+        <li className="navBtn">
+          <Link to="" className="navBtnTxt">
+            My Profile
+          </Link>
         </li>
-        <li>
-          <Link to="">Find Toys</Link>
+        <li className="navBtn">
+          <Link to="" className="navBtnTxt">
+            Find Toys
+          </Link>
         </li>
       </ul>
     </nav>
