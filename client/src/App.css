@@ -67,6 +67,12 @@
   background-color: rgb(177, 160, 255);
 }
 
+.grouper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .mainSection {
   display: flex;
   flex-direction: column;
