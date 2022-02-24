@@ -1,7 +1,12 @@
 //Libraries/////////////////////////////////////////////////////
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
 import "./App.css";
 
 //Components///////////////////////////////////////////////////
@@ -11,18 +16,18 @@ import Footer from "./components/Footer";
 import Listings from "./components/Listings";
 
 //Apollo///////////////////////////////////////////////////////
-import { setContext } from '@apollo/client/link/context';
+import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -41,8 +46,8 @@ function App() {
         <div id="root">
           <Nav />
           {/* <Splash/> */}
-          {/* <Footer /> */}
           <Listings />
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
