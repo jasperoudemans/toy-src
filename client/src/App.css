@@ -37,8 +37,8 @@
   }
 }
 
-.nav {
-  height: 4rem;
+.znav {
+  /* height: 4.5rem; */
   width: 100vw;
   background-color: black;
 }
@@ -46,6 +46,7 @@
 .flex {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 0.5rem;
 }
 
@@ -56,6 +57,7 @@
   border: 2px solid whitesmoke;
   border-radius: 4px;
   transition: ease-in-out 3ms;
+  margin: 0.25rem;
 }
 
 .navBtnTxt {
