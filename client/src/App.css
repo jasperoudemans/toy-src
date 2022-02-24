@@ -1,3 +1,8 @@
+:root {
+  --backgroudcolor: black;
+  --textcolor: whitesmoke;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +42,7 @@
 .znav {
   /* height: 4.5rem; */
   width: 100vw;
-  background-color: black;
+  background-color: var(--backgroudcolor);
 }
 
 .flex {
@@ -47,24 +52,32 @@
   padding: 0.5rem;
 }
 
-.znavBtn {
-  padding: 0.5rem;
-  display: flex;
+.navBtnShell {
   list-style-type: none;
-  border: 2px solid whitesmoke;
-  border-radius: 4px;
-  transition: ease-in-out 3ms;
-  margin: 0.25rem;
 }
 
-.navBtnTxt {
-  color: whitesmoke;
+.znavBtn {
+  color: var(--textcolor);
   text-decoration: none;
-  margin: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  list-style-type: none;
+  border: 2px solid var(--textcolor);
+  border-radius: 4px;
+  transition: ease-in-out 3ms;
 }
 
 .znavBtn:hover {
+  transition: ease-in-out 3ms;
   background-color: rgb(177, 160, 255);
+}
+
+.grouper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .mainSection {
@@ -74,15 +87,15 @@
 }
 
 .appTitle {
-  color: whitesmoke;
+  color: var(--textcolor);
   font-size: 2.5rem;
   list-style-type: none;
   width: 50%;
 }
 
 .zfooter {
-  background-color: black;
-  color: whitesmoke;
+  background-color: var(--backgroudcolor);
+  color: var(--textcolor);
 }
 
 .footerMain {
