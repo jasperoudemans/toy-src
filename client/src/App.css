@@ -45,7 +45,7 @@
 
 .flex {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 0.5rem;
 }
 
@@ -66,4 +66,11 @@
 
 .navBtn:hover {
   background-color: rgb(177, 160, 255);
+}
+
+.appTitle {
+  color: whitesmoke;
+  font-size: 2.5rem;
+  list-style-type: none;
+  width: 50%;
 }
