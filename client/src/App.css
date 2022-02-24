@@ -80,17 +80,19 @@
   flex-wrap: wrap;
 }
 
-.mainSection {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
 .appTitle {
   color: var(--textcolor);
   font-size: 2.5rem;
   list-style-type: none;
   width: 50%;
+}
+
+.polaroid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  height: 80%;
 }
 
 .zfooter {
@@ -108,7 +110,13 @@
   list-style-type: none;
 }
 
+.toyCard {
+  /* margin-bottom: 10px; */
+  height: 95%;
+}
+
 .toyCard:hover {
-  opacity: .5;
+  opacity: 0.5;
   cursor: pointer;
+  background-color: rgb(199, 199, 199);
 }
