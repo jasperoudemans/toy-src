@@ -107,3 +107,8 @@
 .footerItem {
   list-style-type: none;
 }
+
+.toyCard:hover {
+  opacity: .5;
+  cursor: pointer;
+}
