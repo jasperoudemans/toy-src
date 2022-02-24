@@ -6,18 +6,18 @@ const Nav = () => {
       <ul className="flex">
         <li className="appTitle">ToySRC</li>
         <div className="grouper">
-          <li className="znavBtn">
-            <Link to="" className="navBtnTxt">
+          <li className="navBtnShell">
+            <Link to="" className="znavBtn">
               Dashboard
             </Link>
           </li>
-          <li className="znavBtn">
-            <Link to="" className="navBtnTxt">
+          <li className="navBtnShell">
+            <Link to="" className="znavBtn">
               Find Toys
             </Link>
           </li>
-          <li className="znavBtn">
-            <Link to="" className="navBtnTxt">
+          <li className="navBtnShell">
+            <Link to="" className="znavBtn">
               My Profile
             </Link>
           </li>
