@@ -11,10 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^3.6.3",
+    "apollo-server-express": "^3.6.3",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "graphql": "^15.8.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.6"
   },
   "devDependencies": {
