@@ -5,17 +5,17 @@ const Nav = () => {
     <nav className="znav">
       <ul className="flex">
         <li className="appTitle">ToySRC</li>
-        <li className="navBtn">
+        <li className="znavBtn">
           <Link to="" className="navBtnTxt">
             Dashboard
           </Link>
         </li>
-        <li className="navBtn">
+        <li className="znavBtn">
           <Link to="" className="navBtnTxt">
             Find Toys
           </Link>
         </li>
-        <li className="navBtn">
+        <li className="znavBtn">
           <Link to="" className="navBtnTxt">
             My Profile
           </Link>
