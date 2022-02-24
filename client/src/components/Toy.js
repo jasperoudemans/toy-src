@@ -14,6 +14,7 @@ const imgStyle = {
   borderRadius: "2px",
 };
 //shadow-lg h-100 are classes I took out of top div
+
 function Toy({ name, imageURL, price, owner, description, showToyModal }) {
   return (
     <div
@@ -35,5 +36,6 @@ function Toy({ name, imageURL, price, owner, description, showToyModal }) {
       </div>
     </div>
   );
+}
 
 export default Toy;
