@@ -33,7 +33,7 @@ const resolvers = {
         addUser: async (parent, { username, email, password, location }) => {
             const user = await User.create({ username, email, password, location });
             const token = signToken(user);
-            return { token, profile };
+            return { token };
         },
         addToy: async (parent, { name, price, imageURL, owner, description}) => {
             const toy = await Toys.create({name, price, imageURL, owner, description});
