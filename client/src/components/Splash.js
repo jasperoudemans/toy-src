@@ -72,18 +72,18 @@ export default function Splash() {
             </Tab.Container>
           </Modal>
 
-          <div class="py-3">
+          <div className="py-3">
             <button
-              class="nobg znavBtn"
+              className="nobg znavBtn"
               style={{ float: "left", marginRight: 10, marginLeft: 0 }}
-              eventKey="login"
+              eventkey="login"
               onClick={() => setShowLoginModal(true)}
             >
               Signup!
             </button>
             <button
-              class="nobg znavBtn"
-              eventKey="signup"
+              className="nobg znavBtn"
+              eventkey="signup"
               onClick={() => setShowSignupModal(true)}
             >
               Login

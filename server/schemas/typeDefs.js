@@ -48,6 +48,7 @@ type Mutation {
     removeToy(toyID: ID!) : Toys
 
     lowerReputation(username: String!) : User
+    increaseReputation(username: String!) : User
 }
 `;
 

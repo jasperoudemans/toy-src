@@ -35,18 +35,25 @@ const resolvers = {
             const token = signToken(user);
             return { token };
         },
-        addToy: async (parent, { name, price, imageURL, owner, description}) => {
-            const toy = await Toys.create({name, price, imageURL, owner, description});
+        addToy: async (parent, { name, price, imageURL, owner, description }) => {
+            const toy = await Toys.create({ name, price, imageURL, owner, description });
             return toy;
         },
-        removeToy: async (parent, {id}) => {
-            const toy = await Toys.findOneAndDelete({_id: id});
+        removeToy: async (parent, { id }) => {
+            const toy = await Toys.findOneAndDelete({ _id: id });
             return toy;
         },
-        lowerReputation: async (parent, {username}) => {
+        lowerReputation: async (parent, { username }) => {
             const user = await User.findOneAndUpdate(
-                {username: username},
-                {$inc: {reputation: -1}}
+                { username: username },
+                { $inc: { reputation: -1 } }
+            )
+            return user;
+        },
+        increaseReputation: async (parent, { username }) => {
+            const user = await User.findOneAndUpdate(
+                { username: username },
+                { $inc: { reputation: +1 } }
             )
             return user;
         }
