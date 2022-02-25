@@ -8,6 +8,8 @@ type User {
     password: String!
     location: String!
     listings: [Toys]
+    reputation: Int
+    hasReview: Boolean
 }
 
 type Auth {

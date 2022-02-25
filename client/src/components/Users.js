@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import users from "./usersData.json";
+//import users from "./usersData.json";
+
+import { GET_USERS } from "../utils/queries";
+import { useQuery, useMutation } from '@apollo/client';
 
 import starSRC from "../img/star.png"
 
 function Users() {
+    const { loading, data } = useQuery(GET_USERS);
+    const users = data?.users || [];
+
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [location, setLocation] = useState();
@@ -82,7 +88,7 @@ function Users() {
         }
         else {
             return (
-                <img src={starSRC} alt="star"></img>
+                <img src={starSRC} alt="star" style={starStyle}></img>
             )
         }
     };
