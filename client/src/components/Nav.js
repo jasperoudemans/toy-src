@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import toys from "../img/toys.png"
+import toys from "../img/toys.png";
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
+  // nav color-changer
+  // Lifecycle.componentDidMount() {
+  //   window.addEventListener("scroll", this.handleScroll);
+  // }
+
+  // Lifecycle.componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.handleScroll);
+  // }
+
+  // const handleScroll = () => {
+  //   if (window.scrollY > 20) {
+  //     document.querySelector("#nav").className = "znav scroll";
+  //   } else {
+  //     document.querySelector("#nav").className = "znav";
+  //   }
+  // };
   return (
-    <nav className="znav"> 
+    <nav className="znav" id="nav">
       <div className="flex">
         <div className="appTitle">
           <img src={toys} width="50" /> ToySRC
         </div>
         <div className="flex">
-          <ul className={'navmenu grouper ' + (menu ? 'show' : '')}>
+          <ul className={"navmenu grouper " + (menu ? "show" : "")}>
             <li className="navBtnShell">
               <Link to="" className="znavBtn">
                 Dashboard
@@ -28,9 +44,22 @@ const Nav = () => {
               </Link>
             </li>
           </ul>
-          <div onClick={() => setMenu(!menu)} className="navBtnShell menu-hamburger">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          <div
+            onClick={() => setMenu(!menu)}
+            className="navBtnShell menu-hamburger"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fillRule="currentColor"
+              className="bi bi-list"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+              />
             </svg>
           </div>
         </div>
