@@ -26,3 +26,12 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const LOWER_REPUTATION = gql`
+mutation lowerReputation($username: String!) {
+  lowerReputation(username: $username) {
+    username
+    reputation
+  }
+}
+`; 
+

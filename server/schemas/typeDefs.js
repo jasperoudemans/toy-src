@@ -46,6 +46,8 @@ type Mutation {
 
     addToy(name: String!, price: Int!, imageURL: String!, owner: String!, description: String!) : Toys
     removeToy(toyID: ID!) : Toys
+
+    lowerReputation(username: String!) : User
 }
 `;
 
