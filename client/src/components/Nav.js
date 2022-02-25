@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import toys from "../img/toys.png";
+import { HashLink } from "react-router-hash-link";
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
@@ -32,23 +33,18 @@ const Nav = () => {
         <div className="flex">
           <ul className={"navmenu grouper " + (menu ? "show" : "")}>
             <li className="navBtnShell">
+              <HashLink to="/#findtoys" className="znavBtn">
+                Find Toys
+              </HashLink>
+            </li>
+            <li className="navBtnShell">
+              <HashLink to="/users#reputations" className="znavBtn">
+                User Reputations
+              </HashLink>
+            </li>
+            <li className="navBtnShell">
               <Link to="/" className="znavBtn">
                 Dashboard
-              </Link>
-            </li>
-            <li className="navBtnShell">
-              <a href="#findtoys" className="znavBtn">
-                Find Toys
-              </a>
-            </li>
-            <li className="navBtnShell">
-              <Link to="/users" className="znavBtn">
-                User Reputations
-              </Link>
-            </li>
-            <li className="navBtnShell">
-              <Link to="" className="znavBtn">
-                My Profile
               </Link>
             </li>
           </ul>
