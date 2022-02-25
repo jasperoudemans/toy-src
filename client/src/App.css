@@ -63,7 +63,7 @@ section {
 } */
 
 .text-white {
-  color: white
+  color: white;
 }
 
 .menu-hamburger {
@@ -71,11 +71,11 @@ section {
   font-size: 32px;
   padding: 0 14px;
   border-radius: 4px;
-  transition: all .25s;
+  transition: all 0.25s;
   display: none;
 }
 .menu-hamburger:hover {
-  background: rgba(255, 255, 255, .25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 @media (max-width: 768px) {
@@ -83,13 +83,13 @@ section {
     display: block;
   }
   .navmenu.show {
-    display: flex!important;
+    display: flex !important;
   }
   .navmenu {
-    display: none!important;
-    position:fixed;
-    left:0;
-    right:0;
+    display: none !important;
+    position: fixed;
+    left: 0;
+    right: 0;
     top: 80px;
     background-color: #333;
     padding: 10px 0;
@@ -103,7 +103,7 @@ section {
   position: fixed;
   width: 100%;
   padding: 0 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 
@@ -142,6 +142,7 @@ section {
 .znavBtn:hover {
   transition: ease-in-out 3ms;
   background-color: rgb(177, 160, 255);
+  color: var(--textcolor);
 }
 
 .grouper {
