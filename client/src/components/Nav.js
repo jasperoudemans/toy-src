@@ -25,11 +25,11 @@ const Nav = () => {
   return (
     <nav className={navBar ? "znav active" : "znav"} id="nav">
       <div className="flex">
-        <Link to="/" style={noStyle}>
+        <HashLink to="/#top" style={noStyle}>
           <div className="appTitle">
             <img src={toys} width="50" /> ToySRC
           </div>
-        </Link>
+        </HashLink>
         <div className="flex">
           <ul className={"navmenu grouper " + (menu ? "show" : "")}>
             <li className="navBtnShell">
