@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
     "@apollo/client": "^3.5.9",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
