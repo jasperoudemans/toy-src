@@ -1,5 +1,5 @@
 :root {
-  --backgroudcolor: black;
+  --backgroundcolor: black;
   --textcolor: whitesmoke;
 }
 
@@ -112,7 +112,7 @@ section {
 }
 
 .znav.active {
-  background-color: var(--backgroudcolor);
+  background-color: var(--backgroundcolor);
 }
 
 .flex {
@@ -132,7 +132,7 @@ section {
 
 .znavBtn {
   color: var(--textcolor);
-  background-color: var(--backgroudcolor);
+  background-color: var(--backgroundcolor);
   text-decoration: none;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -182,7 +182,7 @@ section {
 }
 
 .zfooter {
-  background-color: var(--backgroudcolor);
+  background-color: var(--backgroundcolor);
   color: var(--textcolor);
 }
 

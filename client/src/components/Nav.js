@@ -1,29 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import toys from "../img/toys.png";
 import { HashLink } from "react-router-hash-link";
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
   // nav color-changer;
-  const [navBar, setNavBar] = useState(false);
+  const [darkNav, setDarkNav] = useState(window.location.pathname !== "/");
+  let location = useLocation();
 
-  const changeNavColor = () => {
-    if (window.scrollY >= 860) {
-      setNavBar(true);
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setDarkNav(false);
     } else {
-      setNavBar(false);
+      setDarkNav(true);
     }
-  };
+  }, [location.pathname]);
 
-  window.addEventListener("scroll", changeNavColor);
+  useEffect(() => {
+    const changeNavColor = () => {
+      if (window.location.pathname !== "/") return;
+
+      if (window.scrollY >= 860) {
+        setDarkNav(true);
+      } else {
+        setDarkNav(false);
+      }
+    };
+
+    window.addEventListener("scroll", changeNavColor);
+
+    return () => {
+      window.removeEventListener("scroll", changeNavColor);
+    };
+  }, []);
 
   const noStyle = {
     textDecoration: "none",
   };
 
   return (
-    <nav className={navBar ? "znav active" : "znav"} id="nav">
+    <nav className={darkNav ? "znav active" : "znav"} id="nav">
       <div className="flex">
         <HashLink to="/#top" style={noStyle}>
           <div className="appTitle">
