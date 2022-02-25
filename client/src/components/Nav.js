@@ -43,9 +43,9 @@ const Nav = () => {
               </HashLink>
             </li>
             <li className="navBtnShell">
-              <Link to="/" className="znavBtn">
+              <HashLink to="/#top" className="znavBtn">
                 Dashboard
-              </Link>
+              </HashLink>
             </li>
           </ul>
           <div
