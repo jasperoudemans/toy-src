@@ -99,7 +99,7 @@ section {
 .znav {
   /* height: 4.5rem; */
   width: 100vw;
-  background-color: var(--backgroudcolor);
+  background-color: transparent;
   position: fixed;
   width: 100%;
   padding: 0 10px;
@@ -109,6 +109,10 @@ section {
 
 .znav ul {
   margin-bottom: 0;
+}
+
+.scroll {
+  background-color: var(--backgroudcolor);
 }
 
 .flex {
