@@ -33,5 +33,14 @@ mutation lowerReputation($username: String!) {
     reputation
   }
 }
-`; 
+`;
+
+export const INCREASE_REPUTATION = gql`
+mutation increaseReputation($username: String!) {
+  increaseReputation(username: $username) {
+    username
+    reputation
+  }
+}
+`;
 

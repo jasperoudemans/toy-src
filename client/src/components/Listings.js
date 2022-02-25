@@ -49,109 +49,119 @@ function Listings() {
   const closeCommentModal = () => {
     setCommentModal(false);
   };
-
-  return (
-    <section id="findtoys" className="mainSection container">
-      <div className="row">
-        <div className="col text-center">
-          <h1 className="sectionTitle">Toy Listings</h1>
-        </div>
+  if (loading) {
+    return (
+      <div>
+        <h1>
+          LOADING CONTENT
+        </h1>
       </div>
-      <div className="row">
-        {listings.map((e) => (
-          <div className="col"  key={e.name+e.price+e.owner+e.imageURL}>
-            <Toy
-              name={e.name}
-              imageURL={e.imageURL}
-              price={e.price}
-              owner={e.owner}
-              description={e.description}
-              showToyModal={() => showToyModal(e.name, e.imageURL, e.price, e.owner, e.description, e.comments)}
-            />
-          </div>
-        ))}
-      </div>
-
-      <Modal
-        size="lg"
-        show={showModal}
-        className="modal"
-        tabIndex="-1"
-        role="dialog"
-        id="toyModal"
-      >
-        <div className="modal-dialog modal-xl" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="modalTitle">
-                {name}
-              </h5>
-              <button
-                type="button"
-                className="close"
-                aria-label="Close"
-                onClick={() => closeToyModal()}
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body text-center">
-              <img src={imageURL} alt="toy Example" style={modalImageStyle} />
-              <ul style={listStyle}>
-                <li key="id1">Price: ${price}</li>
-                <li key="id2">Owner: {owner}</li>
-                <li key="id3">Description: {description}</li>
-                <li key="id4">
-                  <button
-                    className="btnBlack"
-                    onClick={() => setCommentModal(true)}
-                  >
-                    Comments
-                  </button>
-                </li>
-              </ul>
-              <div></div>
-            </div>
+    )
+  }
+  else {
+    return (
+      <section id="findtoys" className="mainSection container">
+        <div className="row">
+          <div className="col text-center">
+            <h1 className="sectionTitle">Toy Listings</h1>
           </div>
         </div>
-      </Modal>
-      <Modal
-        size="md"
-        show={showCommentModal}
-        className="modal"
-        tabIndex="-1"
-        role="dialog"
-      >
-        <div className="modal-dialog modal-xl" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="modalTitle">
-                Comments
-              </h5>
-              {/* comments.map(comment => `
+        <div className="row">
+          {listings.map((e) => (
+            <div className="col" key={e.name + e.price + e.owner + e.imageURL}>
+              <Toy
+                name={e.name}
+                imageURL={e.imageURL}
+                price={e.price}
+                owner={e.owner}
+                description={e.description}
+                showToyModal={() => showToyModal(e.name, e.imageURL, e.price, e.owner, e.description, e.comments)}
+              />
+            </div>
+          ))}
+        </div>
+
+        <Modal
+          size="lg"
+          show={showModal}
+          className="modal"
+          tabIndex="-1"
+          role="dialog"
+          id="toyModal"
+        >
+          <div className="modal-dialog modal-xl" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="modalTitle">
+                  {name}
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  aria-label="Close"
+                  onClick={() => closeToyModal()}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body text-center">
+                <img src={imageURL} alt="toy Example" style={modalImageStyle} />
+                <ul style={listStyle}>
+                  <li key="id1">Price: ${price}</li>
+                  <li key="id2">Owner: {owner}</li>
+                  <li key="id3">Description: {description}</li>
+                  <li key="id4">
+                    <button
+                      className="btnBlack"
+                      onClick={() => setCommentModal(true)}
+                    >
+                      Comments
+                    </button>
+                  </li>
+                </ul>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </Modal>
+        <Modal
+          size="md"
+          show={showCommentModal}
+          className="modal"
+          tabIndex="-1"
+          role="dialog"
+        >
+          <div className="modal-dialog modal-xl" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="modalTitle">
+                  Comments
+                </h5>
+                {/* comments.map(comment => `
 
               `) */}
-              <button
-                type="button"
-                className="close"
-                aria-label="Close"
-                onClick={() => closeCommentModal()}
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body text-center">
-              {comments.map(item => (
-                <div>
-                  <b>{item.author}</b>: {item.comment}
-                </div>
-              ))}
+                <button
+                  type="button"
+                  className="close"
+                  aria-label="Close"
+                  onClick={() => closeCommentModal()}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body text-center">
+                {comments.map(item => (
+                  <div>
+                    <b>{item.author}</b>: {item.comment}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </Modal>
-    </section>
-  );
+        </Modal>
+      </section>
+    );
+  }
 }
 
 export default Listings;
