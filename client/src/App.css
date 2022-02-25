@@ -103,7 +103,7 @@ section {
   position: fixed;
   width: 100%;
   padding: 0 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); */
   z-index: 10;
 }
 
@@ -132,6 +132,7 @@ section {
 
 .znavBtn {
   color: var(--textcolor);
+  background-color: var(--backgroudcolor);
   text-decoration: none;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -144,9 +145,9 @@ section {
 }
 
 .btnBlack {
-  border: 2px solid black!important;
-  color: black!important;
-  background: transparent!important;
+  border: 2px solid black !important;
+  color: black !important;
+  background: transparent !important;
   border-radius: 4px;
   padding: 1rem 1.5rem;
   transition: ease-in-out 3ms;
