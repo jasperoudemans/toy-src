@@ -111,7 +111,7 @@ section {
   margin-bottom: 0;
 }
 
-.scroll {
+.znav.active {
   background-color: var(--backgroudcolor);
 }
 
