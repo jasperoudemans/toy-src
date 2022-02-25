@@ -4,24 +4,21 @@ import toys from "../img/toys.png";
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
-  // nav color-changer
-  // Lifecycle.componentDidMount() {
-  //   window.addEventListener("scroll", this.handleScroll);
-  // }
+  // nav color-changer;
+  const [navBar, setNavBar] = useState(false);
 
-  // Lifecycle.componentWillUnmount() {
-  //   window.removeEventListener("scroll", this.handleScroll);
-  // }
+  const changeNavColor = () => {
+    if (window.scrollY >= 860) {
+      setNavBar(true);
+    } else {
+      setNavBar(false);
+    }
+  };
 
-  // const handleScroll = () => {
-  //   if (window.scrollY > 20) {
-  //     document.querySelector("#nav").className = "znav scroll";
-  //   } else {
-  //     document.querySelector("#nav").className = "znav";
-  //   }
-  // };
+  window.addEventListener("scroll", changeNavColor);
+
   return (
-    <nav className="znav" id="nav">
+    <nav className={navBar ? "znav active" : "znav"} id="nav">
       <div className="flex">
         <div className="appTitle">
           <img src={toys} width="50" /> ToySRC
