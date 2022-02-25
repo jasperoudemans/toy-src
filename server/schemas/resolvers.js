@@ -19,7 +19,7 @@ const resolvers = {
     },
     Mutation: {
         login: async (parent, { email, password }) => {
-            const user = await user.findOne({ email });
+            const user = await User.findOne({ email });
             if (!user) {
                 throw new AuthenticationError('No user with this email found!');
             }
@@ -43,7 +43,13 @@ const resolvers = {
             const toy = await Toys.findOneAndDelete({_id: id});
             return toy;
         },
-        
+        lowerReputation: async (parent, {username}) => {
+            const user = await User.findOneAndUpdate(
+                {username: username},
+                {$inc: {reputation: -1}}
+            )
+            return user;
+        }
     }
 };
 

@@ -5,6 +5,8 @@ import { Modal } from "react-bootstrap";
 import { GET_USERS } from "../utils/queries";
 import { useQuery, useMutation } from '@apollo/client';
 
+import { LOWER_REPUTATION } from "../utils/mutations";
+
 import starSRC from "../img/star.png"
 
 const listStyle = {
@@ -12,6 +14,7 @@ const listStyle = {
   };
 
 function Users() {
+    const [lowerRep] = useMutation(LOWER_REPUTATION);
     const { loading, data } = useQuery(GET_USERS);
     const users = data?.users || [];
 
@@ -36,8 +39,11 @@ function Users() {
         setUserModal(true);
     };
 
-    const lowerReputation = (username) => {
-        //TODO
+    const lowerReputation = async (username) => {
+        const data = await lowerRep({
+            variables: {username: username}
+        });
+        setReputation(data.data.lowerReputation.reputation);
     };
 
     const increaseReputation = (username) => {
