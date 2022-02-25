@@ -37,6 +37,11 @@ const Nav = () => {
             </li>
             <li className="navBtnShell">
               <Link to="" className="znavBtn">
+                User Reputations
+              </Link>
+            </li>
+            <li className="navBtnShell">
+              <Link to="" className="znavBtn">
                 My Profile
               </Link>
             </li>
