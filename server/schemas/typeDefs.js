@@ -24,13 +24,13 @@ type Toys {
     imageURL: String!
     owner: String!
     description: String!
+    comments: [Comments]
 }
 
 type Comments {
     _id: ID
     comment: String!
-    owner: String!
-    date: String
+    author: String!
 }
 
 type Query {

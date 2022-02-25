@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
-import listings from "./toysData.json";
+//import listings from "./toysData.json";
+
+import { GET_TOYS } from "../utils/queries";
+import { useQuery, useMutation } from '@apollo/client';
 
 const modalImageStyle = {
   maxHeight: "600px",
@@ -14,7 +17,8 @@ const listStyle = {
 };
 
 function Listings() {
-  //const [listings, setListings] = useState([]);
+  const { loading, data } = useQuery(GET_TOYS);
+  const listings = data?.toys || [];
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
