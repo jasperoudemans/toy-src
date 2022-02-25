@@ -42,7 +42,8 @@ const resolvers = {
         removeToy: async (parent, {id}) => {
             const toy = await Toys.findOneAndDelete({_id: id});
             return toy;
-        }
+        },
+        
     }
 };
 
