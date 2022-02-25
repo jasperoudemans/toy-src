@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Toys, Comments } = require("../models");
+const { User, Toys } = require("../models");
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -15,9 +15,6 @@ const resolvers = {
         },
         toys: async () => {
             return Toys.find({});
-        },
-        comments: async () => {
-            return Comments.find({});
         }
     },
     Mutation: {
@@ -33,22 +30,18 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
+        addUser: async (parent, { username, email, password, location }) => {
+            const user = await User.create({ username, email, password, location });
             const token = signToken(user);
-            return { token, user };
+            return { token, profile };
         },
-        addToy: async (parent, { name, price, imageURL, owner, description }) => {
-            const toy = await Toys.create({ name, price, imageURL, owner, description });
+        addToy: async (parent, { name, price, imageURL, owner, description}) => {
+            const toy = await Toys.create({name, price, imageURL, owner, description});
             return toy;
         },
-        removeToy: async (parent, { id }) => {
-            const toy = await Toys.findOneAndDelete({ _id: id });
+        removeToy: async (parent, {id}) => {
+            const toy = await Toys.findOneAndDelete({_id: id});
             return toy;
-        },
-        addComment: async (parent, { comment, owner, date }) => {
-            const newComment = await Comments.create({ comment, owner, date });
-            return newComment;
         }
     }
 };

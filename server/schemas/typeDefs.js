@@ -39,13 +39,11 @@ type Query {
 }
 
 type Mutation {
-    addUser(username: String!, email: String!, password: String!) : Auth
+    addUser(username: String!, email: String!, password: String! location: String!) : Auth
     login(email: String!, password: String!) : Auth
 
     addToy(name: String!, price: Int!, imageURL: String!, owner: String!, description: String!) : Toys
     removeToy(toyID: ID!) : Toys
-
-    addComment(comment: String!, owner: String!, date: String!): Comments
 }
 `;
 
