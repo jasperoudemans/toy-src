@@ -11,6 +11,29 @@
   font-size: 16px;
   font-weight: bold;
 }
+.splashtxt {
+  color: aliceblue;
+}
+
+section {
+  /* position: relative; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+.splash {
+  margin: 0;
+  font-family: Roboto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(./img/splashpage-wallpaper.jpeg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 
 #root {
   display: flex;
@@ -39,10 +62,53 @@
   color: #61dafb;
 } */
 
+.text-white {
+  color: white
+}
+
+.menu-hamburger {
+  color: white;
+  font-size: 32px;
+  padding: 0 14px;
+  border-radius: 4px;
+  transition: all .25s;
+  display: none;
+}
+.menu-hamburger:hover {
+  background: rgba(255, 255, 255, .25);
+}
+
+@media (max-width: 768px) {
+  .menu-hamburger {
+    display: block;
+  }
+  .navmenu.show {
+    display: flex!important;
+  }
+  .navmenu {
+    display: none!important;
+    position:fixed;
+    left:0;
+    right:0;
+    top: 80px;
+    background-color: #333;
+    padding: 10px 0;
+  }
+}
+
 .znav {
   /* height: 4.5rem; */
   width: 100vw;
   background-color: var(--backgroudcolor);
+  position: fixed;
+  width: 100%;
+  padding: 0 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+  z-index: 10;
+}
+
+.znav ul {
+  margin-bottom: 0;
 }
 
 .flex {
@@ -56,12 +122,16 @@
   list-style-type: none;
 }
 
+.nobg {
+  background-color: transparent;
+}
+
 .znavBtn {
   color: var(--textcolor);
   text-decoration: none;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   display: flex;
   list-style-type: none;
   border: 2px solid var(--textcolor);
@@ -84,7 +154,7 @@
   color: var(--textcolor);
   font-size: 2.5rem;
   list-style-type: none;
-  width: 50%;
+  /* width: 50%; */
 }
 
 .polaroid {

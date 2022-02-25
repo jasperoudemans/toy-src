@@ -8,6 +8,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import "./App.css";
+import Splash from "./components/Splash";
 
 //Components///////////////////////////////////////////////////
 import Nav from "./components/Nav";
@@ -45,7 +46,7 @@ function App() {
       <Router>
         <div id="root">
           <Nav />
-          {/* <Splash/> */}
+          <Splash/>
           <Listings />
           <Footer />
         </div>
