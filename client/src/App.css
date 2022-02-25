@@ -191,3 +191,9 @@ section {
   cursor: pointer;
   background-color: rgb(199, 199, 199);
 }
+
+.userCard:hover {
+  opacity: 0.5;
+  cursor: pointer;
+  background-color: grey;
+}

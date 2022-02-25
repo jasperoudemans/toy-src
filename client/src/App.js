@@ -8,13 +8,13 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import "./App.css";
-import Splash from "./components/Splash";
 
 //Components///////////////////////////////////////////////////
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-// import Splash from "./components/Splash";
 import Listings from "./components/Listings";
+import Splash from "./components/Splash";
+import Users from "./components/Users"
 
 //Apollo///////////////////////////////////////////////////////
 import { setContext } from "@apollo/client/link/context";
@@ -44,12 +44,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div id="root">
-          <Nav />
-          <Splash/>
-          <Listings />
-          <Footer />
-        </div>
+        <Switch>
+          <div id="root">
+            <Nav />
+            <Route exact path="/">
+              <Splash />
+              <Listings />
+            </Route>
+            <Route exact path="/users">
+              <Users/>
+            </Route>
+            <Footer />
+          </div>
+        </Switch>
       </Router>
     </ApolloProvider>
   );
