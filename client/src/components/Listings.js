@@ -44,7 +44,7 @@ function Listings() {
   };
 
   return (
-    <section className="mainSection container">
+    <section id="findtoys" className="mainSection container">
       <div className="row">
         <div className="col text-center">
           <h1 className="sectionTitle">Toy Listings</h1>

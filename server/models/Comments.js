@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, ObjectId } = require('mongoose');
 
 const commentsSchema = new Schema({
     comment: {
@@ -11,7 +11,7 @@ const commentsSchema = new Schema({
     },
     date: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 });
 

@@ -20,7 +20,13 @@ const toysSchema = new Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    comments: [
+        {
+            comment: String,
+            author: String
+        }
+    ]
 });
 
 const Toys = model('Toys', toysSchema);
