@@ -17,12 +17,18 @@ const Nav = () => {
 
   window.addEventListener("scroll", changeNavColor);
 
+  const noStyle = {
+    textDecoration: "none",
+  };
+
   return (
     <nav className={navBar ? "znav active" : "znav"} id="nav">
       <div className="flex">
-        <div className="appTitle">
-          <img src={toys} width="50" /> ToySRC
-        </div>
+        <Link to="/" style={noStyle}>
+          <div className="appTitle">
+            <img src={toys} width="50" /> ToySRC
+          </div>
+        </Link>
         <div className="flex">
           <ul className={"navmenu grouper " + (menu ? "show" : "")}>
             <li className="navBtnShell">
