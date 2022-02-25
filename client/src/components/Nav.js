@@ -40,7 +40,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className={darkNav ? "znav active" : "znav"} id="nav">
+    <nav className={darkNav ? "znav znav-active" : "znav"} id="nav">
       <div className="flex">
         <HashLink to="/#top" style={noStyle}>
           <div className="appTitle">

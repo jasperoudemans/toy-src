@@ -105,13 +105,14 @@ section {
   padding: 0 10px;
   /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); */
   z-index: 10;
+  transition: background-color 200ms ease-in-out;
 }
 
 .znav ul {
   margin-bottom: 0;
 }
 
-.znav.active {
+.znav-active {
   background-color: var(--backgroundcolor);
 }
 
@@ -141,7 +142,7 @@ section {
   list-style-type: none;
   border: 2px solid var(--textcolor);
   border-radius: 4px;
-  transition: ease-in-out 3ms;
+  transition: background-color ease-in-out 200ms;
 }
 
 .btnBlack {
@@ -150,12 +151,11 @@ section {
   background: transparent !important;
   border-radius: 4px;
   padding: 1rem 1.5rem;
-  transition: ease-in-out 3ms;
+  transition: ease-in-out 200ms;
   margin: 12px auto auto;
 }
 
 .znavBtn:hover {
-  transition: ease-in-out 3ms;
   background-color: rgb(177, 160, 255);
   color: var(--textcolor);
 }
