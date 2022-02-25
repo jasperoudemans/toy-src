@@ -30,7 +30,7 @@ const userSchema = new Schema(
         },
         hasReview: {
             type: Boolean
-        }
+        },
     },
     {
         toJSON: {
