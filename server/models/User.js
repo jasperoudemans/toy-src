@@ -25,6 +25,12 @@ const userSchema = new Schema(
             required: true
         },
         // listings: [Toys.schema]
+        reputation: {
+            type: Number
+        },
+        hasReview: {
+            type: Boolean
+        }
     },
     {
         toJSON: {
