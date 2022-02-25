@@ -36,7 +36,7 @@ const Nav = () => {
               </a>
             </li>
             <li className="navBtnShell">
-              <Link to="" className="znavBtn">
+              <Link to="/users" className="znavBtn">
                 User Reputations
               </Link>
             </li>
