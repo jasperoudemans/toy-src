@@ -7,6 +7,10 @@ import { useQuery, useMutation } from '@apollo/client';
 
 import starSRC from "../img/star.png"
 
+const listStyle = {
+    listStyleType: "none",
+  };
+
 function Users() {
     const { loading, data } = useQuery(GET_USERS);
     const users = data?.users || [];
@@ -34,12 +38,10 @@ function Users() {
 
     const lowerReputation = (username) => {
         //TODO
-
     };
 
     const increaseReputation = (username) => {
         //TODO
-
     };
 
     const starStyle = {
@@ -94,7 +96,7 @@ function Users() {
     };
 
     return (
-        <section className="container">
+        <section className="container" id="reputations">
             <div className="row">
                 <h1>Users</h1>
             </div>
@@ -113,20 +115,20 @@ function Users() {
                 </div>
             ))}
             <Modal size="lg" show={showUserModal} className="modal" tabIndex="-1" role="dialog">
-                <div className="modal-dialog modal-xl" role="document">
+                <div className="modal-dialog modal-xl w-100" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <button
                                 type="button"
-                                className="close"
+                                className="btn btn-primary"
                                 aria-label="Close"
                                 onClick={() => closeUserModal()}
                             >
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body text-center">
-                            <ul>
+                        <div className="modal-body">
+                            <ul style={listStyle}>
                                 <li key="id1">Username: {username}</li>
                                 <li key="id2">Email: {email}</li>
                                 <li key="id3">Location: {location}</li>
@@ -134,8 +136,16 @@ function Users() {
                                 <li key="id5">Has Reviews: {hasReview ? "Yes" : "No"}</li>
                             </ul>
                             <div>
-                                <button className="btn btn-primary" onClick={() => lowerReputation(username)}>Lower Reputation</button>
-                                <button className="btn btn-primary" onClick={() => increaseReputation(username)}>Increase Reputation</button>
+                                <hr></hr>
+                            </div>
+                            <div>
+                                <button className="btn btn-primary w-100" onClick={() => lowerReputation(username)}>Lower Reputation</button>
+                            </div>
+                            <div>
+                                <hr></hr>
+                            </div>
+                            <div>
+                                <button className="btn btn-primary w-100" onClick={() => increaseReputation(username)}>Increase Reputation</button>
                             </div>
                         </div>
                     </div>
