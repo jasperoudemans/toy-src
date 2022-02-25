@@ -3,10 +3,9 @@ import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
 import listings from "./toysData.json";
 
-console.log(listings);
-
 const modalImageStyle = {
   maxHeight: "600px",
+  width: "100%"
 };
 
 const listStyle = {
@@ -52,7 +51,7 @@ function Listings() {
       </div>
       <div className="row">
         {listings.map((e) => (
-          <div className="col">
+          <div className="col"  key={e.name+e.price+e.owner+e.imageURL}>
             <Toy
               name={e.name}
               imageURL={e.imageURL}
@@ -60,7 +59,6 @@ function Listings() {
               owner={e.owner}
               description={e.description}
               showToyModal={showToyModal}
-              key={e.name}
             />
           </div>
         ))}
@@ -93,10 +91,10 @@ function Listings() {
               <img src={imageURL} alt="toy Example" style={modalImageStyle} />
 
               <ul style={listStyle}>
-                <li>Price: ${price}</li>
-                <li>Owner: {owner}</li>
-                <li>Description: {description}</li>
-                <li>
+                <li key="id1">Price: ${price}</li>
+                <li key="id2">Owner: {owner}</li>
+                <li key="id3">Description: {description}</li>
+                <li key="id4">
                   <button
                     className="btn btn-primary"
                     onClick={() => setCommentModal(true)}
