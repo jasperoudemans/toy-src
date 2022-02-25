@@ -5,7 +5,8 @@ import listings from "./toysData.json";
 
 const modalImageStyle = {
   maxHeight: "600px",
-  width: "100%"
+  width: "100%",
+  marginBottom: '24px'
 };
 
 const listStyle = {
@@ -20,6 +21,7 @@ function Listings() {
   const [imageURL, setImageURL] = useState("");
   const [owner, setOwner] = useState("");
   const [description, setDescription] = useState("");
+  const [comments, setComments] = useState([]);
 
   const [showModal, setModal] = useState(false);
 
@@ -27,13 +29,15 @@ function Listings() {
     setModal(false);
   };
 
-  const showToyModal = (name, imageURL, price, owner, description) => {
+  const showToyModal = (name, imageURL, price, owner, description, comments) => {
+    console.log(name, imageURL, price, owner, description, comments)
     setName(name);
     setPrice(price);
     setImageURL(imageURL);
     setOwner(owner);
     setDescription(description);
     setModal(true);
+    setComments(comments);
   };
 
   const [showCommentModal, setCommentModal] = useState(false);
@@ -58,7 +62,7 @@ function Listings() {
               price={e.price}
               owner={e.owner}
               description={e.description}
-              showToyModal={showToyModal}
+              showToyModal={() => showToyModal(e.name, e.imageURL, e.price, e.owner, e.description, e.comments)}
             />
           </div>
         ))}
@@ -89,17 +93,16 @@ function Listings() {
             </div>
             <div className="modal-body text-center">
               <img src={imageURL} alt="toy Example" style={modalImageStyle} />
-
               <ul style={listStyle}>
                 <li key="id1">Price: ${price}</li>
                 <li key="id2">Owner: {owner}</li>
                 <li key="id3">Description: {description}</li>
                 <li key="id4">
                   <button
-                    className="btn btn-primary"
+                    className="btnBlack"
                     onClick={() => setCommentModal(true)}
                   >
-                    Comment
+                    Comments
                   </button>
                 </li>
               </ul>
@@ -121,6 +124,9 @@ function Listings() {
               <h5 className="modal-title" id="modalTitle">
                 Comments
               </h5>
+              {/* comments.map(comment => `
+
+              `) */}
               <button
                 type="button"
                 className="close"
@@ -130,7 +136,13 @@ function Listings() {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body text-center"></div>
+            <div className="modal-body text-center">
+              {comments.map(item => (
+                <div>
+                  <b>{item.author}</b>: {item.comment}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Modal>

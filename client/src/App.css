@@ -139,6 +139,16 @@ section {
   transition: ease-in-out 3ms;
 }
 
+.btnBlack {
+  border: 2px solid black!important;
+  color: black!important;
+  background: transparent!important;
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  transition: ease-in-out 3ms;
+  margin: 12px auto auto;
+}
+
 .znavBtn:hover {
   transition: ease-in-out 3ms;
   background-color: rgb(177, 160, 255);
