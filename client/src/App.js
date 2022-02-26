@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 import Listings from "./components/Listings";
 import Splash from "./components/Splash";
 import Users from "./components/Users"
-import Profile from "./components/Profile"
+import Dashboard from "./components/Dashboard"
 
 //Apollo///////////////////////////////////////////////////////
 import { setContext } from "@apollo/client/link/context";
@@ -56,7 +56,7 @@ function App() {
               <Users />
             </Route>
             <Route exact path="/dashboard">
-              <Profile />
+              <Dashboard />
             </Route>
           </Switch>
           <Footer />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
+import { Nav, Modal, Tab } from "react-bootstrap";
 
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
@@ -21,12 +21,12 @@ export default function Splash() {
           {Auth.loggedIn() ? (
                 <>
                 
-                  <button class="nobg znavBtn" onClick={Auth.logout}>Logout</button>
+                  <button className="nobg znavBtn" onClick={Auth.logout}>Logout</button>
                 </>
               ) : (
                 <>
-                <button class="nobg znavBtn" style={{float: 'left', marginRight: 10, marginLeft: 0}} eventKey="login" onClick={() => setShowLoginModal(true)}>Signup!</button>
-                <button class="nobg znavBtn" eventKey="signup" onClick={() => setShowSignupModal(true)}>Login</button> 
+                <button className="nobg znavBtn" style={{float: 'left', marginRight: 10, marginLeft: 0}} eventkey="login" onClick={() => setShowLoginModal(true)}>Signup!</button>
+                <button className="nobg znavBtn" eventkey="signup" onClick={() => setShowSignupModal(true)}>Login</button> 
                 </>
               )}
 

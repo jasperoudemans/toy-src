@@ -60,7 +60,7 @@ const Nav = () => {
               </HashLink>
             </li>
             <li className="navBtnShell">
-              <HashLink to="/#top" className="znavBtn">
+              <HashLink to="/dashboard" className="znavBtn">
                 Dashboard
               </HashLink>
             </li>
