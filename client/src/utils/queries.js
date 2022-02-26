@@ -26,3 +26,15 @@ query toys {
     }
 }
 `
+
+export const QUERY_ME = gql`
+query me {
+me{
+    username
+    email
+    location
+    reputation
+    hasReview
+    }
+}
+`
