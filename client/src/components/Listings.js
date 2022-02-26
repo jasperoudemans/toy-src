@@ -29,6 +29,10 @@ function Listings() {
 
   const [showModal, setModal] = useState(false);
 
+  function addComment () {
+    
+  }
+ 
   const closeToyModal = () => {
     setModal(false);
   };
@@ -153,9 +157,18 @@ function Listings() {
                 {comments.map(item => (
                   <div>
                     <b>{item.author}</b>: {item.comment}
-                  </div>
+                  </div> 
                 ))}
               </div>
+              <textarea placeholder="Write your comment..."></textarea>
+              <button
+                  type="button"
+                  className="close"
+                  aria-label="Close"
+                  onClick={() => addComment()}
+                >
+                <span aria-hidden="true">Post comment</span>
+              </button>
             </div>
           </div>
         </Modal>
