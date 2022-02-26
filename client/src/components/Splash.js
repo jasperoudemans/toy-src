@@ -14,8 +14,8 @@ export default function Splash() {
     <div className="splash" id="top">
       <section className="section splash px-5 pb-5" style={{ display: "flex" }}>
         <div className="splashtxt">
-          <h2 style={{ fontSize: 42 }}>Sell. Trade. Play again !</h2>
-          <p>A simple way to buy, sell or trade used toys locally.</p>
+          <h2 style={{ fontSize: 42 }}>Sell. Trade. Play again!</h2>
+          <p>A simple way to buy, sell or trade used toys locally</p>
           <Modal
             size="lg"
             show={showLoginModal}
