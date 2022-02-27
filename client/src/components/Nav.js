@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import toys from "../img/toys.png";
 import { HashLink } from "react-router-hash-link";
+import Auth from '../utils/auth';
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
@@ -59,11 +60,22 @@ const Nav = () => {
                 User Reputations
               </HashLink>
             </li>
-            <li className="navBtnShell">
+            {Auth.loggedIn() ? (
+                <>
+                <li className="navBtnShell">
+                
               <HashLink to="/dashboard" className="znavBtn">
                 Dashboard
               </HashLink>
+            
             </li>
+                  
+                </>
+              ) : (
+                <>
+               
+                </>
+              )}
           </ul>
           <div
             onClick={() => setMenu(!menu)}
