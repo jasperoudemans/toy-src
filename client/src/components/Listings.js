@@ -4,7 +4,7 @@ import Toy from "./Toy";
 //import listings from "./toysData.json";
 
 import { GET_TOYS } from "../utils/queries";
-import { useQuery} from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 const modalImageStyle = {
   maxHeight: "600px",
@@ -17,7 +17,9 @@ const listStyle = {
 };
 
 function Listings() {
-  const { loading, data } = useQuery(GET_TOYS);
+  const { loading, data } = useQuery(GET_TOYS, {
+
+  });
   const listings = data?.toys || [];
 
   const [name, setName] = useState("");
@@ -29,16 +31,15 @@ function Listings() {
 
   const [showModal, setModal] = useState(false);
 
-  function addComment () {
-    
+  function addComment() {
+
   }
- 
+
   const closeToyModal = () => {
     setModal(false);
   };
 
   const showToyModal = (name, imageURL, price, owner, description, comments) => {
-    console.log(name, imageURL, price, owner, description, comments)
     setName(name);
     setPrice(price);
     setImageURL(imageURL);
@@ -141,9 +142,6 @@ function Listings() {
                 <h5 className="modal-title" id="modalTitle">
                   Comments
                 </h5>
-                {/* comments.map(comment => `
-
-              `) */}
                 <button
                   type="button"
                   className="close"
@@ -155,18 +153,18 @@ function Listings() {
               </div>
               <div className="modal-body text-center">
                 {comments.map(item => (
-                  <div>
+                  <div key={item.author+item.comment}>
                     <b>{item.author}</b>: {item.comment}
-                  </div> 
+                  </div>
                 ))}
               </div>
               <textarea placeholder="Write your comment..."></textarea>
               <button
-                  type="button"
-                  className="close"
-                  aria-label="Close"
-                  onClick={() => addComment()}
-                >
+                type="button"
+                className="close"
+                aria-label="Close"
+                onClick={() => addComment()}
+              >
                 <span aria-hidden="true">Post comment</span>
               </button>
             </div>

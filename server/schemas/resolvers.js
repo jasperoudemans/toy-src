@@ -1,6 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Toys } = require("../models");
+const { User } = require("../models");
+const toysSchema = require("../models/Toys");
+const { model } = require('mongoose');
 const { signToken } = require('../utils/auth');
+
+const Toys= model('Toys', toysSchema);
 
 const resolvers = {
     Query: {
@@ -14,6 +18,7 @@ const resolvers = {
             return User.find({});
         },
         toys: async () => {
+
             return Toys.find({});
         }
     },
