@@ -1,5 +1,8 @@
 const db = require('../config/connection');
-const { User, Toys } = require('../models');
+const { User } = require('../models');
+const { model } = require('mongoose');
+const toysSchema = require("../models/Toys");
+const Toys = model('Toys', toysSchema);
 
 const usersData = require('./usersData.json');
 const toysData = require('./toysData.json');
