@@ -4,80 +4,209 @@
         "email": "ivi@email.com",
         "password": "123456",
         "location": "85730",
-        "reputation" : 99,
-        "hasReview" : true
+        "reputation": 99,
+        "hasReview": true,
+        "listings": [
+            {
+                "name": "LOL Surprise Dolls Glam Glitter Series",
+                "imageURL": "https://imagizer.imageshack.com/img924/674/yGY6RX.jpg",
+                "price": 10,
+                "owner": "Ivi",
+                "description": "Original Doll From The Glam Glitter Series, Complete with all accessories",
+                "comments": [
+                    {
+                        "comment": "Nice toy!",
+                        "author": "John"
+                    },
+                    {
+                        "comment": "I wanna buy this! Can we set up a meeting?",
+                        "author": "Mary"
+                    }
+                ]
+            },
+            {
+                "name": "Squishmallow Kellytoy Plush 12\" ",
+                "imageURL": "https://imagizer.imageshack.com/img922/4449/aozDsU.jpg",
+                "price": 10,
+                "owner": "Ivi",
+                "description": "Squishmallows are cute, cuddly, and ready to join your squad.",
+                "comments": [
+                    {
+                        "comment": "Is this still availabe?",
+                        "author": "Mark"
+                    },
+                    {
+                        "comment": "Cross streets, please?",
+                        "author": "Anna"
+                    }
+                ]
+            },
+            {
+                "name": "Monster Truck - Blue",
+                "imageURL": "https://imagizer.imageshack.com/img923/8105/4P0DXq.jpg",
+                "price": 10,
+                "owner": "Ivi",
+                "description": "This is the BIGFOOT from Traxxas. BIGFOOT is - The Original Monster Truck.",
+                "comments": [
+                    {
+                        "comment": "Awesome.",
+                        "author": "Lara"
+                    },
+                    {
+                        "comment": "So Good! I have Two !!",
+                        "author": "Pedro"
+                    }
+                ]
+            }
+        ]
     },
     {
         "username": "Max",
         "email": "max@email.com",
         "password": "1234567",
         "location": "85122",
-        "reputation" : 85,
-        "hasReview" : true
+        "reputation": 85,
+        "hasReview": true,
+        "listings": [
+            {
+                "name": "Ty Beanie Boos 6” Pellie the Cat ",
+                "imageURL": "https://imagizer.imageshack.com/img923/8281/X3DY3L.jpg",
+                "price": 10,
+                "owner": "Max",
+                "description": "Excellent Condition scratch on one eye unable to see in the picture",
+                "comments": [
+                    {
+                        "comment": "Do you have more than one?",
+                        "author": "Barbara"
+                    },
+                    {
+                        "comment": "Where are you located?",
+                        "author": "Diego"
+                    }
+                ]
+            },
+            {
+                "name": "Hot Wheels And Matchbox Unsorted",
+                "imageURL": "https://imagizer.imageshack.com/img924/4751/pYkI4s.jpg",
+                "price": 10,
+                "owner": "Max",
+                "description": "I have lots of cool cars and all are in perfect shape. Batman and Superman also available.",
+                "comments": [
+                    {
+                        "comment": "My son will love it!",
+                        "author": "Bianca"
+                    },
+                    {
+                        "comment": "Can we meet today?",
+                        "author": "Sebastian"
+                    }
+                ]
+            },
+            {
+                "name": "Pokemon Card 10 OFFICIAL Card",
+                "imageURL": "https://imagizer.imageshack.com/img922/1804/veq2yl.jpg",
+                "price": 10,
+                "owner": "Max",
+                "description": "1 UltraRare, 1 Holo or reverse hole rare, 2 reverse rolo common, 6 common",
+                "comments": [
+                    {
+                        "comment": "Would you trade?",
+                        "author": "Carlos"
+                    },
+                    {
+                        "comment": "I need them all! Can we meet now?",
+                        "author": "Peter"
+                    }
+                ]
+            }
+        ]
     },
     {
         "username": "David",
         "email": "david@email.com",
         "password": "123456",
         "location": "85747",
-        "reputation" : 65,
-        "hasReview" : true
-        
+        "reputation": 65,
+        "hasReview": true,
+        "listings": [
+            {
+                "name": "Pop-it Bubble Unic-orn Wallet",
+                "imageURL": "https://imagizer.imageshack.com/img922/5743/RIW83z.jpg",
+                "price": 10,
+                "owner": "David",
+                "description": "1x   Unicorn Bubble Fidget Toy Bag and 2x   Bubble Fidget Toy Bracelet",
+                "comments": [
+                    {
+                        "comment": "Can I buy only the bag?",
+                        "author": "Ariel"
+                    },
+                    {
+                        "comment": "Could you ship it?",
+                        "author": "Jonas"
+                    }
+                ]
+            },
+            {
+                "name": "Baby Alive",
+                "imageURL": "https://imagizer.imageshack.com/img923/3103/sj3Jke.jpg",
+                "price": 10,
+                "owner": "David",
+                "description": "Interactive Black Hair Baby Doll for Girls and Boys Ages 3 and Up, Makes 10 Sound Effects",
+                "comments": [
+                    {
+                        "comment": "Could we trade?",
+                        "author": "Paula"
+                    },
+                    {
+                        "comment": "Love the baby alive collection!",
+                        "author": "Julie"
+                    }
+                ]
+            },
+            {
+                "name": "LEGO Bulk",
+                "imageURL": "https://imagizer.imageshack.com/img922/9566/GuTjJi.jpg",
+                "price": 10,
+                "owner": "David",
+                "description": "Bunch of it!!!!",
+                "comments": [
+                    {
+                        "comment": "I want!!!",
+                        "author": "Emily"
+                    },
+                    {
+                        "comment": "Is it too heavy to carry?",
+                        "author": "Fabio"
+                    }
+                ]
+            }
+        ]
     },
     {
         "username": "Jasper",
         "email": "jasper@email.com",
         "password": "123456",
         "location": "85122",
-        "reputation" : 19,
-        "hasReview" : true
-    },
-    {
-        "username": "William",
-        "email": "will@email.com",
-        "password": "1234566",
-        "location": "85730",
-        "reputation" : 21,
-        "hasReview" : true
-    },
-    {
-        "username": "Anna",
-        "email": "anna@email.com",
-        "password": "1234565",
-        "location": "85747",
-        "reputation" : 0,
-        "hasReview" : false
-    },
-    {
-        "username": "Lisa",
-        "email": "lisa@email.com",
-        "password": "1234564",
-        "location": "85122",
-        "reputation" : 0,
-        "hasReview" : false
-    },
-    {
-        "username": "Aaron",
-        "email": "aaron@email.com",
-        "password": "1234563",
-        "location": "85122",
-        "reputation" : 0,
-        "hasReview" : false
-    },
-    {
-        "username": "Lara",
-        "email": "lara@email.com",
-        "password": "1234562",
-        "location": "85747",
-        "reputation" : 0,
-        "hasReview" : false
-    },
-    {
-        "username": "Carla",
-        "email": "carla@email.com",
-        "password": "1234561",
-        "location": "85730",
-        "reputation" : 0,
-        "hasReview" : false
+        "reputation": 19,
+        "hasReview": true,
+        "listings": [
+            {
+                "name": "Power Ranger",
+                "imageURL": "https://imagizer.imageshack.com/img924/4664/4ZDPtv.jpg",
+                "price": 10,
+                "owner": "Jasper",
+                "description": "Lightning Collection Zeo Red Ranger 6-Inch Premium Collectible",
+                "comments": [
+                    {
+                        "comment": "Is this in good condition?",
+                        "author": "Jake"
+                    },
+                    {
+                        "comment": "I am in Phoenix, could you delivery?",
+                        "author": "Betsy"
+                    }
+                ]
+            }
+        ]
     }
 ]
