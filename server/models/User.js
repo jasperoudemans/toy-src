@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const Toys = require("./Toys");
+const toysSchema = require("./Toys");
 
 const userSchema = new Schema(
     {
@@ -24,7 +24,7 @@ const userSchema = new Schema(
             type: String,
             required: true
         },
-        // listings: [Toys.schema]
+        listings: [toysSchema],
         reputation: {
             type: Number
         },
