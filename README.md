@@ -43,7 +43,7 @@ There are currently no tests
  ## Credits
 David Schepis [Github](https://github.com/davidschepis) [Email](davids.developer@outlook.com)
 
-Ivi Barros [Github](https://github.com/ibarros19) [Email](davids.developer@outlook.com)
+Ivi Barros [Github](https://github.com/ibarros19) [Email](ivibarros19@gmail.com)
 
 Jasper Oudemans [Github](https://github.com/jasperoudemans) [Email](jasperoudemans@gmail.com)
 

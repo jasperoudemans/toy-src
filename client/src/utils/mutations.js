@@ -14,6 +14,23 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_COMMENT = gql`
+  mutation addComment($id: ID!, $comment: String!, $author: String!) {
+    addComment(id: $id, comment: $comment, author: $author) {
+      comment
+      author
+    }
+  }
+`;
+
+export const REMOVE_COMMENT = gql`
+  mutation removeComment($id: ID!, $index: Int!) {
+    removeComment(id: $id, index: $index) {
+      _id
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
