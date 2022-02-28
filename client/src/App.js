@@ -14,8 +14,9 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Listings from "./components/Listings";
 import Splash from "./components/Splash";
-import Users from "./components/Users"
-import Dashboard from "./components/Dashboard"
+import Users from "./components/Users";
+import Dashboard from "./components/Dashboard";
+import AddListingsForm from "./components/AddListingForm";
 
 //Apollo///////////////////////////////////////////////////////
 import { setContext } from "@apollo/client/link/context";
