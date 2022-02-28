@@ -46,6 +46,7 @@ query me {
                 author
             }
         }
+        reviewedUsers
     }
 }
 `
