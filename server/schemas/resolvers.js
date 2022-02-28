@@ -40,8 +40,8 @@ const resolvers = {
             const toy = await Toys.create({ name, price, imageURL, owner, description });
             return toy;
         },
-        removeToy: async (parent, { id }) => {
-            const toy = await Toys.findOneAndDelete({ ID: id });
+        removeToy: async (parent, { _id }) => {
+            const toy = await Toys.findOneAndDelete({ _id: _id });
             return toy;
         },
         lowerReputation: async (parent, { username }, context) => {
