@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background-color: rgb(192, 204, 209);
+  --border-color: rgb(199, 199, 199);
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.sideWays {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  float: left;
+  background-color: var(--background-color);
+}
+
+.nameCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0.5rem;
+  flex-wrap: wrap;
+  border: solid var(--border-color) 2px;
+  overflow: "hidden";
+  border-radius: "5px";
+  background-color: white;
+  filter: drop-shadow(0 4px 5px);
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0.5rem;
+  flex-wrap: wrap;
+  border: 2px solid var(--border-color);
+  overflow: "hidden";
+  border-radius: "5px";
+  height: 100vh;
+  background-color: white;
+  filter: drop-shadow(0px 4px 5px);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+}
+
+.gap {
+  margin: 0.5rem;
+  filter: drop-shadow(0 3px 4px);
+}
+
+.cusButton {
+  background-color: white;
+  color: black;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  transition: background-color 200ms, color 200ms ease-in-out;
+}
+
+.cusButton:hover {
+  /* background-color: rgb(201, 56, 56); */
+  background-color: rgb(235, 109, 109);
+  color: white;
+}
+
+.proBtn {
+  background-color: white;
+  color: black;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  transition: background-color 200ms, color 200ms ease-in-out;
+}
+
+.proBtn:hover {
+  background-color: rgb(123, 156, 170);
+  color: white;
+}
