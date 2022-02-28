@@ -16,7 +16,7 @@ import Listings from "./components/Listings";
 import Splash from "./components/Splash";
 import Users from "./components/Users";
 import Dashboard from "./components/Dashboard";
-import AddListingsForm from "./components/AddListingForm";
+import AddListing from "./components/AddListing";
 
 //Apollo///////////////////////////////////////////////////////
 import { setContext } from "@apollo/client/link/context";
@@ -58,6 +58,9 @@ function App() {
             </Route>
             <Route exact path="/dashboard">
               <Dashboard />
+            </Route>
+            <Route exact path="/addListing">
+              <AddListing />
             </Route>
           </Switch>
           <Footer />
