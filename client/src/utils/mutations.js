@@ -56,3 +56,9 @@ mutation addToy($name: String!, $price: Int!, $imageURL: String!, $owner: String
 }
 `;
 
+export const REMOVE_TOY = gql `
+mutation Mutation($id: ID!) {
+  removeToy(_id: $id) {
+    _id
+  }
+}`
