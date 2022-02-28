@@ -46,8 +46,6 @@ function Dashboard() {
             </div>
             {toys.data?.toys.map((e) => {
                 if (checkUser(e.owner)) {
-
-
                     return (
                         <div className="card toyCard" style={cardStyle} key={e.name + e.description + e.price}>
                             <div className="polaroid">
