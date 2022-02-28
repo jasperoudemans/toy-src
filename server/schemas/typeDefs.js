@@ -7,7 +7,6 @@ type User {
     email: String!
     password: String!
     location: String!
-    listings: [Toys]
     reputation: Int
     hasReview: Boolean,
     reviewedUsers: [String]

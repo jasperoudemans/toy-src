@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
-//import listings from "./toysData.json";
 
 import { GET_TOYS } from "../utils/queries";
 import { useQuery } from '@apollo/client';

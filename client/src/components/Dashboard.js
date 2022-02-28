@@ -1,9 +1,7 @@
 //import React, { useState } from "react";
 //import { Modal } from "react-bootstrap";
 
-
-
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_ME, GET_TOYS } from "../utils/queries";
 import { useQuery } from '@apollo/client';
 
 const cardStyle = {
@@ -20,34 +18,36 @@ const imgStyle = {
 };
 
 function Dashboard() {
-    const { loading, data } = useQuery(QUERY_ME, {
-        returnPartialData: true
-    });
-    const user = data?.me || [];
 
-    if (loading) {
-        return (
-            <div>
-                <h1>
-                    Loading data...
-                </h1>
-            </div>
-        )
-    } else {
-        return (
-            <section className='container'>
-                <div className="card toyCard" style={cardStyle}>
-                    <div className="polaroid">
-                        <div className="card-body">
-                            <h5 className="card-title">Username: {user.username}</h5>
-                            <h5 className="card-title">Email: {user.email}</h5>
-                            <h5 className="card-title">location: {user.location}</h5>
-                            <h5 className="card-title">reputation: {user.reputation}</h5>
-                            <h5 className="card-title">Reviews: {user.hasReview}</h5>
-                        </div>
+    const user = useQuery(QUERY_ME);
+    const toys = useQuery(GET_TOYS);
+
+    const checkUser = (username) => {
+        if (user.data?.me) {
+            if (username === user.data?.me.username) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    return (
+        <section className='container'>
+            <div className="card toyCard" style={cardStyle}>
+                <div className="polaroid">
+                    <div className="card-body">
+                        <h5 className="card-title">Username: {user.data?.me.username}</h5>
+                        <h5 className="card-title">Email: {user.data?.me.email}</h5>
+                        <h5 className="card-title">location: {user.data?.me.location}</h5>
+                        <h5 className="card-title">reputation: {user.data?.me.reputation}</h5>
+                        <h5 className="card-title">Reviews: {user.data?.me.hasReview}</h5>
                     </div>
                 </div>
-                {user.listings.map((e) => {
+            </div>
+            {toys.data?.toys.map((e) => {
+                if (checkUser(e.owner)) {
+
+
                     return (
                         <div className="card toyCard" style={cardStyle} key={e.name + e.description + e.price}>
                             <div className="polaroid">
@@ -63,12 +63,16 @@ function Dashboard() {
                             </div>
                         </div>
                     )
-                })}
+                }
+                else {
+                    return (
+                        <div key={e.name + e.description + e.price}></div>
+                    )
+                }
+            })}
 
-
-            </section>
-        )
-    }
+        </section>
+    )
 }
 
 export default Dashboard;
