@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import toys from "../img/toys.png";
 import { HashLink } from "react-router-hash-link";
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
+import callAPI from "../utils/zipCode";
+
+// callAPI();
 
 const Nav = () => {
   const [menu, setMenu] = useState(false);
@@ -45,7 +48,7 @@ const Nav = () => {
       <div className="flex">
         <HashLink to="/#top" style={noStyle}>
           <div className="appTitle">
-            <img src={toys} width="50" alt="toy icon"/> ToySRC
+            <img src={toys} width="50" alt="toy icon" /> ToySRC
           </div>
         </HashLink>
         <div className="flex">
@@ -55,27 +58,23 @@ const Nav = () => {
                 Find Toys
               </HashLink>
             </li>
-            <li className="navBtnShell">
-              <HashLink to="/users#reputations" className="znavBtn">
-                User Reputations
-              </HashLink>
-            </li>
+
             {Auth.loggedIn() ? (
-                <>
+              <>
                 <li className="navBtnShell">
-                
-              <HashLink to="/dashboard" className="znavBtn">
-                Dashboard
-              </HashLink>
-            
-            </li>
-                  
-                </>
-              ) : (
-                <>
-               
-                </>
-              )}
+                  <HashLink to="/users#reputations" className="znavBtn">
+                    User Reputations
+                  </HashLink>
+                </li>
+                <li className="navBtnShell">
+                  <HashLink to="/dashboard" className="znavBtn">
+                    Dashboard
+                  </HashLink>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
           </ul>
           <div
             onClick={() => setMenu(!menu)}
