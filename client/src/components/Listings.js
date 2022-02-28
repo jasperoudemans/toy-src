@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
+import Auth from "../utils/auth";
 
 import { GET_TOYS } from "../utils/queries";
 import { useQuery } from '@apollo/client';
+import { useMutation } from "@apollo/react-hooks";
+import { ADD_COMMENT, REMOVE_COMMENT } from "../utils/mutations";
 
 const modalImageStyle = {
   maxHeight: "600px",
@@ -16,6 +19,10 @@ const listStyle = {
 };
 
 function Listings() {
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [removeComment] = useMutation(REMOVE_COMMENT);
+  const [commentText, setCommentText] = useState("");
+
   const { loading, data } = useQuery(GET_TOYS, {
 
   });
@@ -28,17 +35,60 @@ function Listings() {
   const [description, setDescription] = useState("");
   const [comments, setComments] = useState([]);
 
+  const [toyId, setToyId] = useState('');
+
   const [showModal, setModal] = useState(false);
 
-  function addComment() {
+  const username = localStorage.getItem('username')
 
+  async function handleAddComment () {
+    const newComment = {
+      id: toyId,
+      comment: commentText,
+      author: username
+    }
+    try {
+      await addComment({
+        variables: newComment,
+      })
+      setComments([ ...comments, newComment ])
+      setCommentText('')
+      // const toy = listings.find(x => x._id === toyId)
+      // console.log('toy', toy)
+      // toy.comments = [ ...comments, newComment ]
+      // console.log('toy 2', toy)
+    }
+    catch (e) {
+      console.error(error);
+      // setShowAlert(true);
+    }
+  }
+  function handleCommentText (event) {
+    setCommentText(event.target.value)
+  }
+  async function handleRemoveComment (index) {
+    // console.log({ toyId, index })
+    try {
+      await removeComment({
+        variables: { id: toyId, index },
+      })
+      const newComments = [...comments]
+      newComments.splice(index, 1)
+      setComments([ ...newComments ])
+      const toy = listings.find(x => x._id === toyId)
+      toy.comments = newComments
+    }
+    catch (error) {
+      console.error(error);
+      // setShowAlert(true);
+    }
   }
 
   const closeToyModal = () => {
     setModal(false);
   };
 
-  const showToyModal = (name, imageURL, price, owner, description, comments) => {
+  const showToyModal = (name, imageURL, price, owner, description, comments, toyId) => {
     setName(name);
     setPrice(price);
     setImageURL(imageURL);
@@ -46,6 +96,7 @@ function Listings() {
     setDescription(description);
     setModal(true);
     setComments(comments);
+    setToyId(toyId);
   };
 
   const [showCommentModal, setCommentModal] = useState(false);
@@ -79,7 +130,7 @@ function Listings() {
                 price={e.price}
                 owner={e.owner}
                 description={e.description}
-                showToyModal={() => showToyModal(e.name, e.imageURL, e.price, e.owner, e.description, e.comments)}
+                showToyModal={() => showToyModal(e.name, e.imageURL, e.price, e.owner, e.description, e.comments, e._id)}
               />
             </div>
           ))}
@@ -151,18 +202,22 @@ function Listings() {
                 </button>
               </div>
               <div className="modal-body text-center">
-                {comments.map(item => (
+                {comments.map((item, key) => (
                   <div key={item.author+item.comment}>
                     <b>{item.author}</b>: {item.comment}
+                    &nbsp;
+                    {username === item.author ? (
+                      <a href="#" onClick={() => handleRemoveComment(key)}>Delete Comment</a>
+                    ) : ''}
                   </div>
                 ))}
               </div>
-              <textarea placeholder="Write your comment..."></textarea>
+              <textarea onChange={handleCommentText} placeholder="Write your comment..." value={commentText}></textarea>
               <button
                 type="button"
-                className="close"
+                className="close mt-3"
                 aria-label="Close"
-                onClick={() => addComment()}
+                onClick={() => handleAddComment()}
               >
                 <span aria-hidden="true">Post comment</span>
               </button>

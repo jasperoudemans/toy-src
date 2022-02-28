@@ -19,6 +19,29 @@ const resolvers = {
         }
     },
     Mutation: {
+        addComment: async (parent, { id, comment, author }) => {
+            await Toys.findOneAndUpdate(
+                { _id: id },
+                { $push: {
+                    comments: { comment, author }
+                } }
+            )
+            return { comment, author }
+        },
+        removeComment: async (parent, { id, index }) => {
+            const $unset = {}
+            $unset['comments.' + index] = 1
+            const toy = await Toys.findOneAndUpdate(
+                { _id: id },
+                { $unset }
+            )
+            // remove null comments entries
+            await Toys.findOneAndUpdate(
+                { _id: id },
+                { $pull: { comments: null } }
+            )
+            return toy
+        },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
             if (!user) {

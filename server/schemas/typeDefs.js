@@ -41,6 +41,10 @@ type Query {
 }
 
 type Mutation {
+
+    removeComment(id: ID!, index: Int) : Toys
+    addComment(id: ID!, comment: String!, author: String!) : Comments
+
     addUser(username: String!, email: String!, password: String! location: String!) : Auth
     login(email: String!, password: String!) : Auth
 
