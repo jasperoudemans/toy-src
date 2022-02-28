@@ -1,9 +1,8 @@
 //import React, { useState } from "react";
 //import { Modal } from "react-bootstrap";
-
+import {REMOVE_TOY} from "../utils/mutations"
 import { QUERY_ME, GET_TOYS } from "../utils/queries";
-import { useQuery } from '@apollo/client';
-
+import { useQuery, useMutation } from '@apollo/client';
 const cardStyle = {
     width: "18rem",
     border: "solid rgb(199, 199, 199) 2px",
@@ -18,6 +17,16 @@ const imgStyle = {
 };
 
 function Dashboard() {
+
+    const [removeToy, {error}] = useMutation(REMOVE_TOY);
+
+    const deleteToy =  (data) => {
+     console.log(data)
+     removeToy({
+         variables: {id: data}
+     })
+     window.location.reload();
+    }
 
     const user = useQuery(QUERY_ME);
     const toys = useQuery(GET_TOYS);
@@ -59,6 +68,9 @@ function Dashboard() {
                             <div className="card-body">
                                 <h5 className="card-title">{e.name}</h5>
                             </div>
+                            <button
+                            onClick={() => deleteToy(e._id)}
+                            >DELETE</button>
                         </div>
                     )
                 }

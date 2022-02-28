@@ -41,7 +41,7 @@ const resolvers = {
             return toy;
         },
         removeToy: async (parent, { id }) => {
-            const toy = await Toys.findOneAndDelete({ _id: id });
+            const toy = await Toys.findOneAndDelete({ ID: id });
             return toy;
         },
         lowerReputation: async (parent, { username }, context) => {

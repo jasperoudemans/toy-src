@@ -45,7 +45,7 @@ type Mutation {
     login(email: String!, password: String!) : Auth
 
     addToy(name: String!, price: Int!, imageURL: String!, owner: String!, description: String!) : Toys
-    removeToy(toyID: ID!) : Toys
+    removeToy(_id: ID!) : Toys
 
     lowerReputation(username: String!) : User
     increaseReputation(username: String!) : User

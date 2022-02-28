@@ -14,6 +14,7 @@ query users {
 export const GET_TOYS = gql`
 query toys {
     toys {
+        _id
         name
         price
         imageURL
