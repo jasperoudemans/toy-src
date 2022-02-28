@@ -31,6 +31,9 @@ const userSchema = new Schema(
         hasReview: {
             type: Boolean
         },
+        reviewedUsers: {
+            type: [String]
+        }
     },
     {
         toJSON: {

@@ -9,7 +9,8 @@ type User {
     location: String!
     listings: [Toys]
     reputation: Int
-    hasReview: Boolean
+    hasReview: Boolean,
+    reviewedUsers: [String]
 }
 
 type Auth {

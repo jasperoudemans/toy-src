@@ -49,14 +49,28 @@ const resolvers = {
             const toy = await Toys.findOneAndDelete({ _id: id });
             return toy;
         },
-        lowerReputation: async (parent, { username }) => {
+        lowerReputation: async (parent, { username }, context) => {
+            const data = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $push: { reviewedUsers: username } }
+            );
+            if (!data) {
+                throw new AuthenticationError('Unable to update user');
+            }
             const user = await User.findOneAndUpdate(
                 { username: username },
                 { $inc: { reputation: -1 } }
-            )
+            );
             return user;
         },
-        increaseReputation: async (parent, { username }) => {
+        increaseReputation: async (parent, { username }, context) => {
+            const data = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $push: { reviewedUsers: username } }
+            );
+            if (!data) {
+                throw new AuthenticationError('Unable to update user');
+            }
             const user = await User.findOneAndUpdate(
                 { username: username },
                 { $inc: { reputation: +1 } }
