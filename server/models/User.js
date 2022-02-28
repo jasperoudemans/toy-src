@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const toysSchema = require("./Toys");
-
 const userSchema = new Schema(
     {
         username: {
@@ -24,7 +22,6 @@ const userSchema = new Schema(
             type: String,
             required: true
         },
-        listings: [toysSchema],
         reputation: {
             type: Number
         },

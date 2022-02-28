@@ -14,6 +14,7 @@ query users {
 export const GET_TOYS = gql`
 query toys {
     toys {
+        _id
         name
         price
         imageURL
@@ -35,17 +36,6 @@ query me {
         location
         reputation
         hasReview
-        listings {
-            name
-            price
-            imageURL
-            owner
-            description
-            comments {
-                comment
-                author
-            }
-        }
         reviewedUsers
     }
 }

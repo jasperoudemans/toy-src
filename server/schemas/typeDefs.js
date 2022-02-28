@@ -7,7 +7,6 @@ type User {
     email: String!
     password: String!
     location: String!
-    listings: [Toys]
     reputation: Int
     hasReview: Boolean,
     reviewedUsers: [String]
@@ -46,7 +45,7 @@ type Mutation {
     login(email: String!, password: String!) : Auth
 
     addToy(name: String!, price: Int!, imageURL: String!, owner: String!, description: String!) : Toys
-    removeToy(toyID: ID!) : Toys
+    removeToy(_id: ID!) : Toys
 
     lowerReputation(username: String!) : User
     increaseReputation(username: String!) : User

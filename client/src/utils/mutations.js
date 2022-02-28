@@ -44,3 +44,21 @@ mutation increaseReputation($username: String!) {
 }
 `;
 
+export const ADD_TOY = gql`
+mutation addToy($name: String!, $price: Int!, $imageURL: String!, $owner: String!, $description: String!) {
+  addToy(name: $name, price: $price, imageURL: $imageURL, owner: $owner, description: $description) {
+    name
+    price
+    imageURL
+    owner
+    description
+  }
+}
+`;
+
+export const REMOVE_TOY = gql `
+mutation Mutation($id: ID!) {
+  removeToy(_id: $id) {
+    _id
+  }
+}`
