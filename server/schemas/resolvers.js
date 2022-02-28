@@ -1,10 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require("../models");
-const toysSchema = require("../models/Toys");
-const { model } = require('mongoose');
+const { User, Toys } = require("../models");
 const { signToken } = require('../utils/auth');
-
-const Toys= model('Toys', toysSchema);
 
 const resolvers = {
     Query: {
@@ -23,7 +19,6 @@ const resolvers = {
         }
     },
     Mutation: {
-        // addComment: async () => {},
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
             if (!user) {

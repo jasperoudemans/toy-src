@@ -35,17 +35,6 @@ query me {
         location
         reputation
         hasReview
-        listings {
-            name
-            price
-            imageURL
-            owner
-            description
-            comments {
-                comment
-                author
-            }
-        }
         reviewedUsers
     }
 }

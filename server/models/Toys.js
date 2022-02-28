@@ -29,4 +29,6 @@ const toysSchema = new Schema({
     ]
 });
 
-module.exports = toysSchema;
+const Toys = model('Toys', toysSchema);
+
+module.exports = Toys;
