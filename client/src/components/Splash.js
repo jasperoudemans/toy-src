@@ -17,18 +17,18 @@ export default function Splash() {
           <h2 style={{ fontSize: 42 }}>Sell. Trade. Play again!</h2>
           <p>A simple way to buy, sell or trade used toys locally</p>
 
-        
+
           {Auth.loggedIn() ? (
-                <>
-                
-                  <button className="nobg znavBtn" onClick={Auth.logout}>Logout</button>
-                </>
-              ) : (
-                <>
-                <button className="nobg znavBtn" style={{float: 'left', marginRight: 10, marginLeft: 0}} eventkey="login" onClick={() => setShowLoginModal(true)}>Signup!</button>
-                <button className="nobg znavBtn" eventkey="signup" onClick={() => setShowSignupModal(true)}>Login</button> 
-                </>
-              )}
+            <>
+
+              <button className="nobg znavBtn" onClick={Auth.logout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <button className="nobg znavBtn" style={{ float: 'left', marginRight: 10, marginLeft: 0 }} eventkey="login" onClick={() => setShowLoginModal(true)}>Signup!</button>
+              <button className="nobg znavBtn" eventkey="signup" onClick={() => setShowSignupModal(true)}>Login</button>
+            </>
+          )}
 
           <Modal
             size="lg"
@@ -86,7 +86,7 @@ export default function Splash() {
             </Tab.Container>
           </Modal>
 
-        
+
         </div>
       </section>
     </div>
