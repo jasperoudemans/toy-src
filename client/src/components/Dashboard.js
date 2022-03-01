@@ -20,8 +20,8 @@ const imgStyle = {
 
 const checkStyle = {
   height: "40px",
-  width: "40px"
-}
+  width: "40px",
+};
 
 function Dashboard() {
   const [checkComment] = useMutation(CHECK_COMMENT);
@@ -52,8 +52,8 @@ function Dashboard() {
         toyID: toy._id,
         commentID: comment._id,
         comment: comment.comment,
-        author: comment.author
-      }
+        author: comment.author,
+      },
     });
     window.location.reload();
   };
@@ -62,38 +62,45 @@ function Dashboard() {
     const toyData = toys.data?.toys || [];
     const username = user.data?.me.username || "";
     //check
-    const toyList = toyData.filter((e) => e.owner === username && e.comments.length > 0);
+    const toyList = toyData.filter(
+      (e) => e.owner === username && e.comments.length > 0
+    );
 
     return (
       <div>
-        {
-          toyList.map((e) => (
-            <div key={e._id}>
-              <hr></hr>
-              {e.name}
-              {
-                e.comments.map((c) => (
-                  <div key={e._id + c._id}>
-                    <div className="row" key={c._id}>
-                      <div className="col">
-                        <p>{c.author}: {c.comment}</p>
-                      </div>
-                      <div className="col">
-                        {
-                          !c.checked
-                            ?
-                            <button onClick={() => handleComplete(e, c)}>Complete</button>
-                            :
-                            <img src={checkSRC} alt="checkmark" style={checkStyle}></img>
-                        }
-                      </div>
-                    </div>
+        {toyList.map((e) => (
+          <div key={e._id}>
+            <hr></hr>
+            {e.name}
+            {e.comments.map((c) => (
+              <div key={e._id + c._id}>
+                <div className="row" key={c._id}>
+                  <div className="col">
+                    <p>
+                      {c.author}: {c.comment}
+                    </p>
                   </div>
-                ))
-              }
-            </div>
-          ))
-        }
+                  <div className="col">
+                    {!c.checked ? (
+                      <button
+                        className="proBtn"
+                        onClick={() => handleComplete(e, c)}
+                      >
+                        Complete
+                      </button>
+                    ) : (
+                      <img
+                        src={checkSRC}
+                        alt="checkmark"
+                        style={checkStyle}
+                      ></img>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     );
   };
@@ -103,7 +110,12 @@ function Dashboard() {
       <div className="sideWays">
         <div className="nameCard" style={cardStyle}>
           <h1 className="">Welcome, {user.data?.me.username}</h1>
-          <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
+          <button
+            className="proBtn"
+            onClick={() => window.location.replace("/addListing")}
+          >
+            Add Listing
+          </button>
           <button className="proBtn">Edit Profile</button>
         </div>
         <div className="nameCard" style={cardStyle}>
