@@ -56,7 +56,7 @@ function Dashboard() {
         <div className="nameCard" style={cardStyle}>
           <h1 className="">Welcome, {user.data?.me.username}</h1>
 
-          <button className="proBtn">Sell a Toy</button>
+          <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
           <button className="proBtn" eventkey="EditProfile"
           onClick={() =>setEditModal(true)}
           >Edit Profile</button>
