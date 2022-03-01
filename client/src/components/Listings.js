@@ -238,7 +238,7 @@ function Listings() {
               <div className="modal-body">
                 {comments.map((item, key) => (
                   <div className="flexy" key={item.author + item.comment}>
-                    <div className="frame marg">
+                    <div className="frame marg pad">
                       <b className="">{item.author}</b>: {item.comment}
                     </div>
                     &nbsp;
