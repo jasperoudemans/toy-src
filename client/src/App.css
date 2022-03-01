@@ -245,3 +245,16 @@ section {
   background-color: rgb(123, 156, 170);
   color: white;
 }
+
+.flexBlock {
+  min-width: 30%;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.marg {
+  margin-bottom: 0.5rem;
+}

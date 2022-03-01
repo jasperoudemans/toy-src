@@ -9,7 +9,8 @@ import { ADD_COMMENT, REMOVE_COMMENT } from "../utils/mutations";
 
 import AUTH from "../utils/auth";
 
-const key = "js-YrLnDMcwi8HeD6uKaC0Fh6PiDDLKYStGoP0T03hjjsOI9HmZ8ubr5EK6Vf9EgpFA";
+const key =
+  "js-YrLnDMcwi8HeD6uKaC0Fh6PiDDLKYStGoP0T03hjjsOI9HmZ8ubr5EK6Vf9EgpFA";
 const units = "miles";
 const format = "json";
 
@@ -24,7 +25,6 @@ const listStyle = {
 };
 
 function Listings() {
-
   const getZipCodes = (zipCode, radius = 30) => {
     fetch(
       `https://www.zipcodeapi.com/rest/${key}/radius.${format}/${zipCode}/${radius}/${units}`,
@@ -34,7 +34,7 @@ function Listings() {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
+        console.log(data);
         return data;
       });
   };
@@ -235,10 +235,12 @@ function Listings() {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body text-center">
+              <div className="modal-body">
                 {comments.map((item, key) => (
-                  <div key={item.author + item.comment}>
-                    <b>{item.author}</b>: {item.comment}
+                  <div className="flexy" key={item.author + item.comment}>
+                    <div className="frame marg">
+                      <b className="">{item.author}</b>: {item.comment}
+                    </div>
                     &nbsp;
                     {username === item.author ? (
                       <button
