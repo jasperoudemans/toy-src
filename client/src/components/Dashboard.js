@@ -7,6 +7,12 @@ import "../dashboard.css";
 import EditProfile from "../components/EditProfile"
 import { Nav, Modal, Tab } from "react-bootstrap";
 
+
+
+import checkSRC from "../img/check.png";
+
+import Auth from "../utils/auth";
+
 const cardStyle = {
   border: "solid rgb(199, 199, 199) 2px",
   display: "flex",
@@ -49,6 +55,7 @@ function Dashboard() {
       <div className="sideWays">
         <div className="nameCard" style={cardStyle}>
           <h1 className="">Welcome, {user.data?.me.username}</h1>
+
           <button className="proBtn">Sell a Toy</button>
           <button className="proBtn" eventkey="EditProfile"
           onClick={() =>setEditModal(true)}
