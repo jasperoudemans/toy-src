@@ -73,9 +73,16 @@ mutation addToy($name: String!, $price: Int!, $imageURL: String!, $owner: String
 }
 `;
 
-export const REMOVE_TOY = gql `
+export const REMOVE_TOY = gql`
 mutation Mutation($id: ID!) {
   removeToy(_id: $id) {
     _id
   }
-}`
+}
+`;
+
+export const CHECK_COMMENT = gql`
+mutation checkComment($toyID: ID!, $commentID: ID!, $comment: String!, $author: String!) {
+  checkComment(toyID: $toyID, commentID: $commentID, comment: $comment, author: $author) 
+}
+`;
