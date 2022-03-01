@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
 
-import { GET_TOYS } from "../utils/queries";
+import { GET_TOYS, QUERY_ME, GET_USERS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_COMMENT, REMOVE_COMMENT } from "../utils/mutations";
@@ -25,30 +25,18 @@ const listStyle = {
 };
 
 function Listings() {
-  const getZipCodes = (zipCode, radius = 30) => {
-    fetch(
-      `https://www.zipcodeapi.com/rest/${key}/radius.${format}/${zipCode}/${radius}/${units}`,
-      {}
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        return data;
-      });
-  };
-
-  const handleZipCode = () => {
-    getZipCodes(85747);
-  };
-
   const [addComment, { error }] = useMutation(ADD_COMMENT);
   const [removeComment] = useMutation(REMOVE_COMMENT);
   const [commentText, setCommentText] = useState("");
 
-  const { loading, data } = useQuery(GET_TOYS, {});
-  const listings = data?.toys || [];
+  const data = useQuery(GET_TOYS);
+  const listings = data.data?.toys || [];
+
+  const data2 = useQuery(QUERY_ME);
+  const user = data2.data?.me || "";
+
+  const data3 = useQuery(GET_USERS);
+  const users = data3.data?.users || [];
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -92,7 +80,6 @@ function Listings() {
       setComments([...newComments]);
     } catch (error) {
       console.error(error);
-      // setShowAlert(true);
     }
   }
 
@@ -126,7 +113,26 @@ function Listings() {
   const closeCommentModal = () => {
     setCommentModal(false);
   };
-  if (loading) {
+  const getZipCodes = (zipCode, radius = 30) => {
+    fetch(
+      `https://www.zipcodeapi.com/rest/${key}/radius.${format}/${zipCode}/${radius}/${units}`,
+      {}
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        console.log(users);
+        const filteredListings = listings.filter((item) => {});
+      });
+  };
+
+  const handleZipCode = () => {
+    getZipCodes(user.location);
+  };
+
+  if (data.loading) {
     return (
       <div>
         <h1>LOADING CONTENT</h1>
@@ -261,6 +267,7 @@ function Listings() {
                 placeholder="Write your comment..."
                 value={commentText}
               ></textarea>
+
               <button
                 type="button"
                 className="close mt-3 proBtn"
