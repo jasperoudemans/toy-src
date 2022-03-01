@@ -9,6 +9,10 @@ import { ADD_COMMENT, REMOVE_COMMENT } from "../utils/mutations";
 
 import AUTH from "../utils/auth";
 
+const key = "js-YrLnDMcwi8HeD6uKaC0Fh6PiDDLKYStGoP0T03hjjsOI9HmZ8ubr5EK6Vf9EgpFA";
+const units = "miles";
+const format = "json";
+
 const modalImageStyle = {
   maxHeight: "600px",
   width: "100%",
@@ -20,6 +24,25 @@ const listStyle = {
 };
 
 function Listings() {
+
+  const getZipCodes = (zipCode, radius = 30) => {
+    fetch(
+      `https://www.zipcodeapi.com/rest/${key}/radius.${format}/${zipCode}/${radius}/${units}`,
+      {}
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+        return data;
+      });
+  };
+
+  const handleZipCode = () => {
+    getZipCodes(85747);
+  };
+
   const [addComment, { error }] = useMutation(ADD_COMMENT);
   const [removeComment] = useMutation(REMOVE_COMMENT);
   const [commentText, setCommentText] = useState("");
@@ -115,6 +138,7 @@ function Listings() {
         <div className="row">
           <div className="col text-center">
             <h1 className="sectionTitle">Toy Listings</h1>
+            <button onClick={() => handleZipCode()}>Filter Local Only</button>
           </div>
         </div>
         <div className="row">
