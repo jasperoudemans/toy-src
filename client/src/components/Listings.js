@@ -44,6 +44,7 @@ function Listings() {
   const [owner, setOwner] = useState("");
   const [description, setDescription] = useState("");
   const [comments, setComments] = useState([]);
+  const [filteredListings, setFilteredListings] = useState();
 
   const [toyId, setToyId] = useState("");
 
@@ -124,11 +125,21 @@ function Listings() {
       .then((data) => {
         console.log(data);
         console.log(users);
-        const filteredListings = listings.filter((item) => {});
+        console.log(listings);
+        const filteredListings = listings.filter((item) => {
+          const owner = users.find((user) => user.username === item.owner);
+          const isInRadius = data.zip_codes.some((zipcode) => {
+            return zipcode.zip_code === owner.location;
+          });
+          return isInRadius;
+        });
+        setFilteredListings(filteredListings);
       });
   };
-
+  console.log(listings);
+  console.log(filteredListings);
   const handleZipCode = () => {
+    console.log({ user });
     getZipCodes(user.location);
   };
 
@@ -148,7 +159,7 @@ function Listings() {
           </div>
         </div>
         <div className="row">
-          {listings.map((e) => (
+          {(filteredListings || listings).map((e) => (
             <div className="col" key={e.name + e.price + e.owner + e.imageURL}>
               <Toy
                 name={e.name}
@@ -243,17 +254,17 @@ function Listings() {
               </div>
               <div className="modal-body">
                 {comments.map((item, key) => (
-                  <div className="flexy" key={item.author + item.comment}>
+                  <div className="flexAway" key={item.author + item.comment}>
                     <div className="frame marg pad">
                       <b className="">{item.author}</b>: {item.comment}
                     </div>
                     &nbsp;
                     {username === item.author ? (
                       <button
-                        className="proBtn"
+                        className="cusButton"
                         onClick={() => handleRemoveComment(key)}
                       >
-                        Delete Comment
+                        Delete
                       </button>
                     ) : (
                       ""
