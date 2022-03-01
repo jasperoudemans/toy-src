@@ -78,6 +78,7 @@ function Listings() {
   const closeToyModal = () => {
     setModal(false);
     window.location.assign('/#findtoys');
+    window.location.reload()
   };
 
   const showToyModal = (name, imageURL, price, owner, description, comments, toyId) => {
