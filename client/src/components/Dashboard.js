@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-//import { Modal } from "react-bootstrap";
-import { REMOVE_TOY } from "../utils/mutations";
+import { REMOVE_TOY, CHECK_COMMENT } from "../utils/mutations";
 import { QUERY_ME, GET_TOYS } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import "../dashboard.css";
 import EditProfile from "../components/EditProfile"
 import { Nav, Modal, Tab } from "react-bootstrap";
 
-
-
 import checkSRC from "../img/check.png";
-
-import Auth from "../utils/auth";
 
 const cardStyle = {
   border: "solid rgb(199, 199, 199) 2px",
@@ -34,7 +29,8 @@ const checkStyle = {
 
 
 function Dashboard() {
-  const [removeToy, { error }] = useMutation(REMOVE_TOY);
+  const [checkComment] = useMutation(CHECK_COMMENT);
+  const [removeToy] = useMutation(REMOVE_TOY);
   const [showEditModal, setEditModal] = useState(false);
 
 
@@ -168,7 +164,7 @@ function Dashboard() {
           <h5 className="">reputation: {user.data?.me.reputation}</h5>
         </div>
         <div className="reviews" style={cardStyle}>
-          <h3 className="">Reviews: {user.data?.me.hasReview}</h3>
+          <h3 className="">Reviews: {getReviews()}</h3>
         </div>
       </div>
       <div className="nameCard" style={cardStyle}>
