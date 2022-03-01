@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 //import { Modal } from "react-bootstrap";
-import { REMOVE_TOY, CHECK_COMMENT } from "../utils/mutations";
+import { REMOVE_TOY } from "../utils/mutations";
 import { QUERY_ME, GET_TOYS } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import "../dashboard.css";
-
 import EditProfile from "../components/EditProfile"
 import { Nav, Modal, Tab } from "react-bootstrap";
-
-import checkSRC from "../img/check.png";
-
 
 const cardStyle = {
   border: "solid rgb(199, 199, 199) 2px",
@@ -23,18 +19,13 @@ const imgStyle = {
   borderRadius: "2px",
 };
 
-const checkStyle = {
-  height: "40px",
-  width: "40px"
-}
-
 function Dashboard() {
-  const [checkComment] = useMutation(CHECK_COMMENT);
   const [removeToy, { error }] = useMutation(REMOVE_TOY);
   const [showEditModal, setEditModal] = useState(false);
 
 
   const deleteToy = (data) => {
+    console.log(data);
     removeToy({
       variables: { id: data },
     });
@@ -53,67 +44,15 @@ function Dashboard() {
     return false;
   };
 
-  const handleComplete = (toy, comment) => {
-    checkComment({
-      variables: {
-        toyID: toy._id,
-        commentID: comment._id,
-        comment: comment.comment,
-        author: comment.author
-      }
-    });
-    window.location.reload();
-  };
-
-  const getReviews = () => {
-    const toyData = toys.data?.toys || [];
-    const username = user.data?.me.username || "";
-    //check
-    const toyList = toyData.filter((e) => e.owner === username && e.comments.length > 0);
-
-    return (
-      <div>
-        {
-          toyList.map((e) => (
-            <div key={e._id}>
-              <hr></hr>
-              {e.name}
-              {
-                e.comments.map((c) => (
-                  <div key={e._id + c._id}>
-                    <div className="row" key={c._id}>
-                      <div className="col">
-                        <p>{c.author}: {c.comment}</p>
-                      </div>
-                      <div className="col">
-                        {
-                          !c.checked
-                            ?
-                            <button onClick={() => handleComplete(e, c)}>Complete</button>
-                            :
-                            <img src={checkSRC} alt="checkmark" style={checkStyle}></img>
-                        }
-                      </div>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
-          ))
-        }
-      </div>
-    );
-  };
-
   return (
     <section className="main">
       <div className="sideWays">
         <div className="nameCard" style={cardStyle}>
           <h1 className="">Welcome, {user.data?.me.username}</h1>
-
-          <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
-          <button className="proBtn">Edit Profile</button>
-
+          <button className="proBtn">Sell a Toy</button>
+          <button className="proBtn" eventkey="EditProfile"
+          onClick={() =>setEditModal(true)}
+          >Edit Profile</button>
         </div>
         <Modal
             size="lg"
@@ -150,7 +89,7 @@ function Dashboard() {
           <h5 className="">reputation: {user.data?.me.reputation}</h5>
         </div>
         <div className="reviews" style={cardStyle}>
-          <h3 className="">Reviews: {getReviews()}</h3>
+          <h3 className="">Reviews: {user.data?.me.hasReview}</h3>
         </div>
       </div>
       <div className="nameCard" style={cardStyle}>
