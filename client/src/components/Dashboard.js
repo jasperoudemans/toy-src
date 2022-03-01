@@ -10,6 +10,7 @@ import { Nav, Modal, Tab } from "react-bootstrap";
 
 import checkSRC from "../img/check.png";
 
+import Auth from "../utils/auth";
 
 const cardStyle = {
   border: "solid rgb(199, 199, 199) 2px",
@@ -113,7 +114,7 @@ function Dashboard() {
 
           <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
           <button className="proBtn">Edit Profile</button>
-
+          <button className="proBtn" onClick={Auth.logout}>Logout</button>
         </div>
         <Modal
             size="lg"
