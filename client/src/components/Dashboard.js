@@ -125,37 +125,37 @@ function Dashboard() {
 
           <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
           <button className="proBtn" eventkey="EditProfile"
-          onClick={() =>setEditModal(true)}
+            onClick={() => setEditModal(true)}
           >Edit Profile</button>
 
         </div>
         <Modal
-            size="lg"
-            show={showEditModal}
-            onHide={() => setEditModal(false)}
-            aria-labelledby="edit-modal"
-          >
-            <Tab.Container defaultActiveKey="EditProfile">
-              <Modal.Header closeButton>
-                <Modal.Title id="edit-modal">
-                  <Nav variant="pills">
-                    <Nav.Item>
-                      <Nav.Link eventKey="EditProfile">Edit Profile</Nav.Link>
-                    </Nav.Item>
-                  </Nav>
-                </Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Tab.Content>
-                  <Tab.Pane eventKey="EditProfile">
-                    <EditProfile
-                      handleModalClose={() => setEditModal(false)}
-                    />
-                  </Tab.Pane>
-                </Tab.Content>
-              </Modal.Body>
-            </Tab.Container>
-          </Modal>
+          size="lg"
+          show={showEditModal}
+          onHide={() => setEditModal(false)}
+          aria-labelledby="edit-modal"
+        >
+          <Tab.Container defaultActiveKey="EditProfile">
+            <Modal.Header closeButton>
+              <Modal.Title id="edit-modal">
+                <Nav variant="pills">
+                  <Nav.Item>
+                    <Nav.Link eventKey="EditProfile">Edit Profile</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Tab.Content>
+                <Tab.Pane eventKey="EditProfile">
+                  <EditProfile
+                    handleModalClose={() => setEditModal(false)}
+                  />
+                </Tab.Pane>
+              </Tab.Content>
+            </Modal.Body>
+          </Tab.Container>
+        </Modal>
 
         <div className="nameCard" style={cardStyle}>
           <h3>My Info:</h3>
@@ -171,33 +171,38 @@ function Dashboard() {
         <h3>Your Toy Listings:</h3>
       </div>
 
-      
-      {toys.data?.toys.map((e) => {
-        if (checkUser(e.owner)) {
-          return (
-            <div
-              className="right card gap"
-              style={cardStyle}
-              key={e.name + e.description + e.price}
-            >
-              <div className="polaroid">
-                <img
-                  className="card-img-top cardImage"
-                  src={e.imageURL}
-                  style={imgStyle}
-                  alt="Auto Parts Website"
-                />
-              </div>
-              <div className="card-body">
-                <h5 className="card-title">{e.name}</h5>
-                <button onClick={() => deleteToy(e._id)} className="cusButton">
-                  Delete listing
-                </button>
-              </div>
-            </div>
-          );
-        }
-      })}
+      {
+        toys.data?.toys.map((e) => (
+          <div key={e._id}>
+            {
+              checkUser(e.owner)
+                ?
+                <div
+                  className="right card gap"
+                  style={cardStyle}
+                  key={e.name + e.description + e.price}
+                >
+                  <div className="polaroid">
+                    <img
+                      className="card-img-top cardImage"
+                      src={e.imageURL}
+                      style={imgStyle}
+                      alt="Auto Parts Website"
+                    />
+                  </div>
+                  <div className="card-body">
+                    <h5 className="card-title">{e.name}</h5>
+                    <button onClick={() => deleteToy(e._id)} className="cusButton">
+                      Delete listing
+                    </button>
+                  </div>
+                </div>
+                :
+                <div></div>
+            }
+          </div>
+        ))
+      }
     </section>
   );
 }
