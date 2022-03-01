@@ -3,7 +3,7 @@ import { REMOVE_TOY, CHECK_COMMENT } from "../utils/mutations";
 import { QUERY_ME, GET_TOYS } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import "../dashboard.css";
-import EditProfile from "../components/EditProfile"
+import EditProfile from "../components/EditProfile";
 import { Nav, Modal, Tab } from "react-bootstrap";
 
 import checkSRC from "../img/check.png";
@@ -20,19 +20,15 @@ const imgStyle = {
   borderRadius: "2px",
 };
 
-
 const checkStyle = {
   height: "40px",
   width: "40px",
 };
 
-
-
 function Dashboard() {
   const [checkComment] = useMutation(CHECK_COMMENT);
   const [removeToy] = useMutation(REMOVE_TOY);
   const [showEditModal, setEditModal] = useState(false);
-
 
   const deleteToy = (data) => {
     console.log(data);
@@ -53,7 +49,6 @@ function Dashboard() {
     }
     return false;
   };
-
 
   const handleComplete = (toy, comment) => {
     checkComment({
@@ -79,31 +74,34 @@ function Dashboard() {
       <div>
         {toyList.map((e) => (
           <div key={e._id}>
-            <hr></hr>
+            <br />
             {e.name}
+            <hr className="rule" />
             {e.comments.map((c) => (
               <div key={e._id + c._id}>
                 <div className="row" key={c._id}>
-                  <div className="col">
-                    <p>
-                      {c.author}: {c.comment}
-                    </p>
-                  </div>
-                  <div className="col">
-                    {!c.checked ? (
-                      <button
-                        className="proBtn"
-                        onClick={() => handleComplete(e, c)}
-                      >
-                        Complete
-                      </button>
-                    ) : (
-                      <img
-                        src={checkSRC}
-                        alt="checkmark"
-                        style={checkStyle}
-                      ></img>
-                    )}
+                  <div className="flex red">
+                    <div className="">
+                      <p>
+                        {c.author}: {c.comment}
+                      </p>
+                    </div>
+                    <div className="">
+                      {!c.checked ? (
+                        <button
+                          className="proBtn"
+                          onClick={() => handleComplete(e, c)}
+                        >
+                          Complete
+                        </button>
+                      ) : (
+                        <img
+                          src={checkSRC}
+                          alt="checkmark"
+                          style={checkStyle}
+                        ></img>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -114,8 +112,6 @@ function Dashboard() {
     );
   };
 
-
-
   return (
     <section className="main">
       <div className="sideWays">
@@ -123,10 +119,19 @@ function Dashboard() {
           <h1 className="">Welcome, {user.data?.me.username}</h1>
 
 
-          <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
-          <button className="proBtn" eventkey="EditProfile"
+          <button
+            className="proBtn"
+            onClick={() => window.location.replace("/addListing")}
+          >
+            Add Listing
+          </button>
+          <button
+            className="proBtn"
+            eventkey="EditProfile"
             onClick={() => setEditModal(true)}
-          >Edit Profile</button>
+          >
+            Edit Profile
+          </button>
 
         </div>
         <Modal
@@ -148,9 +153,12 @@ function Dashboard() {
             <Modal.Body>
               <Tab.Content>
                 <Tab.Pane eventKey="EditProfile">
+
+
                   <EditProfile
                     handleModalClose={() => setEditModal(false)}
                   />
+
                 </Tab.Pane>
               </Tab.Content>
             </Modal.Body>
@@ -170,6 +178,7 @@ function Dashboard() {
       <div className="nameCard" style={cardStyle}>
         <h3>Your Toy Listings:</h3>
       </div>
+
 
       {
         toys.data?.toys.map((e) => (
@@ -203,6 +212,7 @@ function Dashboard() {
           </div>
         ))
       }
+
     </section>
   );
 }
