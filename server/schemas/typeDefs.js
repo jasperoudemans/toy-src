@@ -48,6 +48,7 @@ type Mutation {
 
     addUser(username: String!, email: String!, password: String! location: String!) : Auth
     login(email: String!, password: String!) : Auth
+    editUser(username: String!, location: String!): User
 
     addToy(name: String!, price: Int!, imageURL: String!, owner: String!, description: String!) : Toys
     removeToy(_id: ID!) : Toys
