@@ -39,12 +39,41 @@ function Dashboard() {
     return false;
   };
 
+  const getReviews = () => {
+    const toyData = toys.data?.toys || [];
+    const username = user.data?.me.username || "";
+
+    return (
+      <div>
+        {
+          toyData.map((e) => (
+            <div><p>{e.name}</p>
+              {
+                e.comments.map((c) => (
+                  <div>
+                    {
+                      c.author !== username
+                        ?
+                        <p>{c.author}:{c.comment}</p>
+                        :
+                        <p></p>
+                    }
+                  </div>
+                ))
+              }
+            </div>
+          ))
+        }
+      </div>
+    )
+  };
+
   return (
     <section className="main">
       <div className="sideWays">
         <div className="nameCard" style={cardStyle}>
           <h1 className="">Welcome, {user.data?.me.username}</h1>
-          <button className="proBtn">Sell a Toy</button>
+          <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
           <button className="proBtn">Edit Profile</button>
         </div>
         <div className="nameCard" style={cardStyle}>
@@ -54,7 +83,7 @@ function Dashboard() {
           <h5 className="">reputation: {user.data?.me.reputation}</h5>
         </div>
         <div className="reviews" style={cardStyle}>
-          <h3 className="">Reviews: {user.data?.me.hasReview}</h3>
+          <h3 className="">Reviews: {getReviews()}</h3>
         </div>
       </div>
       <div className="nameCard" style={cardStyle}>
