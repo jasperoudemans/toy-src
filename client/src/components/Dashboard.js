@@ -25,6 +25,14 @@ const imgStyle = {
   borderRadius: "2px",
 };
 
+
+const checkStyle = {
+  height: "40px",
+  width: "40px",
+};
+
+
+
 function Dashboard() {
   const [removeToy, { error }] = useMutation(REMOVE_TOY);
   const [showEditModal, setEditModal] = useState(false);
@@ -50,16 +58,80 @@ function Dashboard() {
     return false;
   };
 
+
+  const handleComplete = (toy, comment) => {
+    checkComment({
+      variables: {
+        toyID: toy._id,
+        commentID: comment._id,
+        comment: comment.comment,
+        author: comment.author,
+      },
+    });
+    window.location.reload();
+  };
+
+  const getReviews = () => {
+    const toyData = toys.data?.toys || [];
+    const username = user.data?.me.username || "";
+    //check
+    const toyList = toyData.filter(
+      (e) => e.owner === username && e.comments.length > 0
+    );
+
+    return (
+      <div>
+        {toyList.map((e) => (
+          <div key={e._id}>
+            <hr></hr>
+            {e.name}
+            {e.comments.map((c) => (
+              <div key={e._id + c._id}>
+                <div className="row" key={c._id}>
+                  <div className="col">
+                    <p>
+                      {c.author}: {c.comment}
+                    </p>
+                  </div>
+                  <div className="col">
+                    {!c.checked ? (
+                      <button
+                        className="proBtn"
+                        onClick={() => handleComplete(e, c)}
+                      >
+                        Complete
+                      </button>
+                    ) : (
+                      <img
+                        src={checkSRC}
+                        alt="checkmark"
+                        style={checkStyle}
+                      ></img>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+
+
   return (
     <section className="main">
       <div className="sideWays">
         <div className="nameCard" style={cardStyle}>
           <h1 className="">Welcome, {user.data?.me.username}</h1>
 
+
           <button className="proBtn" onClick={() => window.location.replace("/addListing")}>Add Listing</button>
           <button className="proBtn" eventkey="EditProfile"
           onClick={() =>setEditModal(true)}
           >Edit Profile</button>
+
         </div>
         <Modal
             size="lg"
