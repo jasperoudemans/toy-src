@@ -23,8 +23,6 @@ function AddListing() {
                 description: description
             }
         });
-        // console.log(data)
-        // console.log(data.data.addToy)
         window.location = "/dashboard";
     }
 
