@@ -7,6 +7,8 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_COMMENT, REMOVE_COMMENT } from "../utils/mutations";
 
+import AUTH from "../utils/auth";
+
 const modalImageStyle = {
   maxHeight: "600px",
   width: "100%",
@@ -40,7 +42,7 @@ function Listings() {
 
   const username = localStorage.getItem('username')
 
-  async function handleAddComment () {
+  async function handleAddComment() {
     const newComment = {
       id: toyId,
       comment: commentText,
@@ -50,24 +52,24 @@ function Listings() {
       await addComment({
         variables: newComment,
       })
-      setComments([ ...comments, newComment ])
+      setComments([...comments, newComment])
       setCommentText('')
     }
     catch (e) {
       console.error(error);
     }
   }
-  function handleCommentText (event) {
+  function handleCommentText(event) {
     setCommentText(event.target.value)
   }
-  async function handleRemoveComment (index) {
+  async function handleRemoveComment(index) {
     try {
       await removeComment({
         variables: { id: toyId, index },
       })
       const newComments = [...comments]
       newComments.splice(index, 1)
-      setComments([ ...newComments ])
+      setComments([...newComments])
     }
     catch (error) {
       console.error(error);
@@ -78,6 +80,7 @@ function Listings() {
   const closeToyModal = () => {
     setModal(false);
     window.location.assign('/#findtoys');
+    window.location.reload()
   };
 
   const showToyModal = (name, imageURL, price, owner, description, comments, toyId) => {
@@ -158,12 +161,19 @@ function Listings() {
                   <li key="id2">Owner: {owner}</li>
                   <li key="id3">Description: {description}</li>
                   <li key="id4">
-                    <button
-                      className="btnBlack"
-                      onClick={() => setCommentModal(true)}
-                    >
-                      Comments
-                    </button>
+                    {
+                      AUTH.loggedIn()
+                        ?
+                        <button
+                          className="btnBlack"
+                          onClick={() => setCommentModal(true)}
+                        >
+                          Comments
+                        </button>
+                        :
+                        <h1>You must be logged in to view comments</h1>
+                    }
+
                   </li>
                 </ul>
                 <div></div>
@@ -195,7 +205,7 @@ function Listings() {
               </div>
               <div className="modal-body text-center">
                 {comments.map((item, key) => (
-                  <div key={item.author+item.comment}>
+                  <div key={item.author + item.comment}>
                     <b>{item.author}</b>: {item.comment}
                     &nbsp;
                     {username === item.author ? (
