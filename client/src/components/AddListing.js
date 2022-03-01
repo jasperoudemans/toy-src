@@ -23,6 +23,9 @@ function AddListing() {
                 description: description
             }
         });
+        if (!data) {
+            alert("Unable to add new toy")
+        }
         window.location = "/dashboard";
     }
 
@@ -48,7 +51,6 @@ function AddListing() {
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Add Toy</button>
             </form>
-            <h1 id="addListingErrors"></h1>
         </section>
     )
 }
