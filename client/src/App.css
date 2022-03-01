@@ -213,3 +213,35 @@ section {
   cursor: pointer;
   background-color: grey;
 }
+
+.close {
+}
+
+.pad {
+  padding: 10px;
+}
+
+.frame {
+  border: 2px solid rgb(199, 199, 199);
+  border-radius: 4px;
+}
+
+.darkFrame {
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.proBtn {
+  background-color: white;
+  color: black;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  transition: background-color 200ms, color 200ms ease-in-out;
+}
+
+.proBtn:hover {
+  background-color: rgb(123, 156, 170);
+  color: white;
+}
