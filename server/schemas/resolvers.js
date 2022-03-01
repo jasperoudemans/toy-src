@@ -22,9 +22,11 @@ const resolvers = {
         addComment: async (parent, { id, comment, author }) => {
             await Toys.findOneAndUpdate(
                 { _id: id },
-                { $push: {
-                    comments: { comment, author }
-                } }
+                {
+                    $push: {
+                        comments: { comment, author }
+                    }
+                }
             )
             return { comment, author }
         },
@@ -104,6 +106,28 @@ const resolvers = {
                 { $inc: { reputation: +1 } }
             )
             return user;
+        },
+        checkComment: async (parent, { toyID, commentID, comment, author }, context) => {
+            const data = await Toys.findOneAndUpdate(
+                { _id: toyID },
+                { $pull: { comments: { _id: commentID } } }
+            );
+            if (!data) {
+                throw new AuthenticationError('Unable to delete checked comment');
+            }
+            const result = await Toys.findOneAndUpdate(
+                { _id: toyID },
+                {
+                    $push: {
+                        comments: {
+                            comment: comment,
+                            author: author,
+                            checked: true
+                        }
+                    }
+                }
+            );
+            return result ? true : false
         }
     }
 };

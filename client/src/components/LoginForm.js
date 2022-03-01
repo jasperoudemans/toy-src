@@ -20,7 +20,6 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -32,7 +31,7 @@ const LoginForm = () => {
         variables: { ...userFormData },
       });
       localStorage.setItem('username', data.login.user.username)
-      Auth.login(data.login.token);
+      setTimeout(() => Auth.login(data.login.token), 1000)
     } catch (err) {
       console.error(error);
       setShowAlert(true);

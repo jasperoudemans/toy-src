@@ -73,12 +73,13 @@ mutation addToy($name: String!, $price: Int!, $imageURL: String!, $owner: String
 }
 `;
 
-export const REMOVE_TOY = gql `
+export const REMOVE_TOY = gql`
 mutation Mutation($id: ID!) {
   removeToy(_id: $id) {
     _id
   }
-}`
+
+}`;
 
 export const EDIT_PROFILE =gql `
 mutation editUser($username: String!, $location: String!) {
@@ -86,4 +87,13 @@ mutation editUser($username: String!, $location: String!) {
     username
   }
 }
-`
+`;
+
+
+
+export const CHECK_COMMENT = gql`
+mutation checkComment($toyID: ID!, $commentID: ID!, $comment: String!, $author: String!) {
+  checkComment(toyID: $toyID, commentID: $commentID, comment: $comment, author: $author) 
+}
+`;
+

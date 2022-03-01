@@ -31,6 +31,7 @@ type Comments {
     _id: ID
     comment: String!
     author: String!
+    checked: Boolean
 }
 
 type Query {
@@ -54,6 +55,8 @@ type Mutation {
 
     lowerReputation(username: String!) : User
     increaseReputation(username: String!) : User
+
+    checkComment(toyID: ID!, commentID: ID!, comment: String!, author: String!) : Boolean
 }
 `;
 
