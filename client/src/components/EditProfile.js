@@ -3,7 +3,6 @@ import { QUERY_ME, } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import "../dashboard.css";
 import { EDIT_PROFILE } from "../utils/mutations";
-import Auth from "../utils/auth";
 
 const cardStyle = {
     border: "solid rgb(199, 199, 199) 2px",
@@ -33,17 +32,19 @@ const EditProfile = () => {
     
         try {
             console.log(userFormData)
-          const { data } = await editUser({
+          const data  = await editUser({
             variables: { ...userFormData },
           });
-         
+         if (!data) {
+           alert("Unable to edit user");
+         }
         } catch (err) {
           console.error(error);
           //setShowAlert(true);
         }
     
         //resetting all the values
-        window.location.reload()
+        window.location.reload();
       };
 
     return (
@@ -62,4 +63,4 @@ const EditProfile = () => {
     )
 }
 
-export default EditProfile
+export default EditProfile;

@@ -209,7 +209,7 @@ function Listings() {
                     <b>{item.author}</b>: {item.comment}
                     &nbsp;
                     {username === item.author ? (
-                      <a href="#" onClick={() => handleRemoveComment(key)}>Delete Comment</a>
+                      <button onClick={() => handleRemoveComment(key)}>Delete Comment</button>
                     ) : ''}
                   </div>
                 ))}

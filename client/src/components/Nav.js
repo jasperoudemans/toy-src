@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import toys from "../img/toys.png";
 import { HashLink } from "react-router-hash-link";
 import Auth from "../utils/auth";
-import callAPI from "../utils/zipCode";
+//import callAPI from "../utils/zipCode";
 
 // callAPI();
 
