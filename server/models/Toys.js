@@ -24,7 +24,8 @@ const toysSchema = new Schema({
     comments: [
         {
             comment: String,
-            author: String
+            author: String,
+            checked: Boolean
         }
     ]
 });

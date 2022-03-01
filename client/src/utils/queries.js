@@ -21,8 +21,10 @@ query toys {
         owner
         description
         comments {
+            _id
             comment
             author
+            checked
         }
     }
 }

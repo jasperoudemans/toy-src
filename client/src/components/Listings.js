@@ -53,21 +53,15 @@ function Listings() {
       })
       setComments([ ...comments, newComment ])
       setCommentText('')
-      // const toy = listings.find(x => x._id === toyId)
-      // console.log('toy', toy)
-      // toy.comments = [ ...comments, newComment ]
-      // console.log('toy 2', toy)
     }
     catch (e) {
       console.error(error);
-      // setShowAlert(true);
     }
   }
   function handleCommentText (event) {
     setCommentText(event.target.value)
   }
   async function handleRemoveComment (index) {
-    // console.log({ toyId, index })
     try {
       await removeComment({
         variables: { id: toyId, index },

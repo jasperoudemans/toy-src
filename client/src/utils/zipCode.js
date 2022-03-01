@@ -6,7 +6,6 @@ const units = "miles";
 const format = "json";
 
 const callAPI = () => {
-  //   console.log(process.env);
   fetch(
     `https://www.zipcodeapi.com/rest/${key}/radius.${format}/${zipCode}/${radius}/${units}`,
     {}
