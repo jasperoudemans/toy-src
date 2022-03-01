@@ -79,3 +79,11 @@ mutation Mutation($id: ID!) {
     _id
   }
 }`
+
+export const EDIT_PROFILE =gql `
+mutation editUser($username: String!, $location: String!) {
+  editUser(username: $username, location: $location) {
+    username
+  }
+}
+`
