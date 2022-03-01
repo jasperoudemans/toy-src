@@ -278,3 +278,19 @@ section {
   background-color: rgb(235, 109, 109);
   color: white;
 }
+
+.casButton {
+  background-color: white;
+  color: black;
+  max-height: 2.8rem;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  transition: background-color 200ms, color 200ms ease-in-out;
+}
+
+.casButton:hover {
+  /* background-color: rgb(201, 56, 56); */
+  background-color: rgb(235, 109, 109);
+  color: white;
+}

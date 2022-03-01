@@ -155,7 +155,9 @@ function Listings() {
         <div className="row">
           <div className="col text-center">
             <h1 className="sectionTitle">Toy Listings</h1>
-            <button onClick={() => handleZipCode()}>Filter Local Only</button>
+            <button className="znavBtn center" onClick={() => handleZipCode()}>
+              Filter Local Only
+            </button>
           </div>
         </div>
         <div className="row">
@@ -261,7 +263,7 @@ function Listings() {
                     &nbsp;
                     {username === item.author ? (
                       <button
-                        className="cusButton"
+                        className="casButton"
                         onClick={() => handleRemoveComment(key)}
                       >
                         Delete

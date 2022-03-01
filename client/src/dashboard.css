@@ -97,3 +97,8 @@ body {
 .rule {
   border-top: 2px solid black;
 }
+
+.center {
+  text-align: center;
+  display: inline-block;
+}
