@@ -3,20 +3,21 @@ import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
 
 import { GET_TOYS, QUERY_ME, GET_USERS } from "../utils/queries";
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_COMMENT, REMOVE_COMMENT } from "../utils/mutations";
 
 import AUTH from "../utils/auth";
 
-const key = "js-YrLnDMcwi8HeD6uKaC0Fh6PiDDLKYStGoP0T03hjjsOI9HmZ8ubr5EK6Vf9EgpFA";
+const key =
+  "js-YrLnDMcwi8HeD6uKaC0Fh6PiDDLKYStGoP0T03hjjsOI9HmZ8ubr5EK6Vf9EgpFA";
 const units = "miles";
 const format = "json";
 
 const modalImageStyle = {
   maxHeight: "600px",
   width: "100%",
-  marginBottom: '24px'
+  marginBottom: "24px",
 };
 
 const listStyle = {
@@ -24,7 +25,6 @@ const listStyle = {
 };
 
 function Listings() {
-
   const [addComment, { error }] = useMutation(ADD_COMMENT);
   const [removeComment] = useMutation(REMOVE_COMMENT);
   const [commentText, setCommentText] = useState("");
@@ -44,54 +44,61 @@ function Listings() {
   const [owner, setOwner] = useState("");
   const [description, setDescription] = useState("");
   const [comments, setComments] = useState([]);
+  const [filteredListings, setFilteredListings] = useState();
 
-  const [toyId, setToyId] = useState('');
+  const [toyId, setToyId] = useState("");
 
   const [showModal, setModal] = useState(false);
 
-  const username = localStorage.getItem('username')
+  const username = localStorage.getItem("username");
 
   async function handleAddComment() {
     const newComment = {
       id: toyId,
       comment: commentText,
-      author: username
-    }
+      author: username,
+    };
     try {
       await addComment({
         variables: newComment,
-      })
-      setComments([...comments, newComment])
-      setCommentText('')
-    }
-    catch (e) {
+      });
+      setComments([...comments, newComment]);
+      setCommentText("");
+    } catch (e) {
       console.error(error);
     }
   }
   function handleCommentText(event) {
-    setCommentText(event.target.value)
+    setCommentText(event.target.value);
   }
   async function handleRemoveComment(index) {
     try {
       await removeComment({
         variables: { id: toyId, index },
-      })
-      const newComments = [...comments]
-      newComments.splice(index, 1)
-      setComments([...newComments])
-    }
-    catch (error) {
+      });
+      const newComments = [...comments];
+      newComments.splice(index, 1);
+      setComments([...newComments]);
+    } catch (error) {
       console.error(error);
     }
   }
 
   const closeToyModal = () => {
     setModal(false);
-    window.location.assign('/#findtoys');
-    window.location.reload()
+    window.location.assign("/#findtoys");
+    window.location.reload();
   };
 
-  const showToyModal = (name, imageURL, price, owner, description, comments, toyId) => {
+  const showToyModal = (
+    name,
+    imageURL,
+    price,
+    owner,
+    description,
+    comments,
+    toyId
+  ) => {
     setName(name);
     setPrice(price);
     setImageURL(imageURL);
@@ -107,7 +114,6 @@ function Listings() {
   const closeCommentModal = () => {
     setCommentModal(false);
   };
-
   const getZipCodes = (zipCode, radius = 30) => {
     fetch(
       `https://www.zipcodeapi.com/rest/${key}/radius.${format}/${zipCode}/${radius}/${units}`,
@@ -117,138 +123,176 @@ function Listings() {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
-        console.log(users)
+        console.log(data);
+        console.log(users);
+        console.log(listings);
         const filteredListings = listings.filter((item) => {
-
-        })
+          const owner = users.find((user) => user.username === item.owner);
+          const isInRadius = data.zip_codes.some((zipcode) => {
+            return zipcode.zip_code === owner.location;
+          });
+          return isInRadius;
+        });
+        setFilteredListings(filteredListings);
       });
   };
-
+  console.log(listings);
+  console.log(filteredListings);
   const handleZipCode = () => {
+    console.log({ user });
     getZipCodes(user.location);
   };
 
-  return (
-    <section id="findtoys" className="mainSection container">
-      <div className="row">
-        <div className="col text-center">
-          <h1 className="sectionTitle">Toy Listings</h1>
-          <button onClick={() => handleZipCode()}>Filter Local Only</button>
-        </div>
+  if (data.loading) {
+    return (
+      <div>
+        <h1>LOADING CONTENT</h1>
       </div>
-      <div className="row">
-        {listings.map((e) => (
-          <div className="col" key={e.name + e.price + e.owner + e.imageURL}>
-            <Toy
-              name={e.name}
-              imageURL={e.imageURL}
-              price={e.price}
-              owner={e.owner}
-              description={e.description}
-              showToyModal={() => showToyModal(e.name, e.imageURL, e.price, e.owner, e.description, e.comments, e._id)}
-            />
+    );
+  } else {
+    return (
+      <section id="findtoys" className="mainSection container">
+        <div className="row">
+          <div className="col text-center">
+            <h1 className="sectionTitle">Toy Listings</h1>
+            <button onClick={() => handleZipCode()}>Filter Local Only</button>
           </div>
-        ))}
-      </div>
-
-      <Modal
-        size="lg"
-        show={showModal}
-        className="modal"
-        tabIndex="-1"
-        role="dialog"
-        id="toyModal"
-      >
-        <div className="modal-dialog modal-xl w-100" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="modalTitle">
-                {name}
-              </h5>
-              <button
-                type="button"
-                className="close"
-                aria-label="Close"
-                onClick={() => closeToyModal()}
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+        </div>
+        <div className="row">
+          {(filteredListings || listings).map((e) => (
+            <div className="col" key={e.name + e.price + e.owner + e.imageURL}>
+              <Toy
+                name={e.name}
+                imageURL={e.imageURL}
+                price={e.price}
+                owner={e.owner}
+                description={e.description}
+                showToyModal={() =>
+                  showToyModal(
+                    e.name,
+                    e.imageURL,
+                    e.price,
+                    e.owner,
+                    e.description,
+                    e.comments,
+                    e._id
+                  )
+                }
+              />
             </div>
-            <div className="modal-body text-center">
-              <img src={imageURL} alt="toy Example" style={modalImageStyle} />
-              <ul style={listStyle}>
-                <li key="id1">Price: ${price}</li>
-                <li key="id2">Owner: {owner}</li>
-                <li key="id3">Description: {description}</li>
-                <li key="id4">
-                  {
-                    AUTH.loggedIn()
-                      ?
+          ))}
+        </div>
+
+        <Modal
+          size="lg"
+          show={showModal}
+          className="modal"
+          tabIndex="-1"
+          role="dialog"
+          id="toyModal"
+        >
+          <div className="modal-dialog modal-xl w-100" role="document">
+            <div className="modal-content">
+              <div className="modal-header frame">
+                <h5 className="modal-title" id="modalTitle">
+                  {name}
+                </h5>
+                <button
+                  type="button"
+                  className="close proBtn"
+                  aria-label="Close"
+                  onClick={() => closeToyModal()}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body text-center">
+                <img src={imageURL} alt="toy Example" style={modalImageStyle} />
+                <ul style={listStyle}>
+                  <li key="id1">Price: ${price}</li>
+                  <li key="id2">Owner: {owner}</li>
+                  <li key="id3">Description: {description}</li>
+                  <li key="id4">
+                    {AUTH.loggedIn() ? (
                       <button
-                        className="btnBlack"
+                        className="proBtn pad"
                         onClick={() => setCommentModal(true)}
                       >
                         Comments
                       </button>
-                      :
+                    ) : (
                       <h1>You must be logged in to view comments</h1>
-                  }
-
-                </li>
-              </ul>
-              <div></div>
+                    )}
+                  </li>
+                </ul>
+                <div></div>
+              </div>
             </div>
           </div>
-        </div>
-      </Modal>
-      <Modal
-        size="md"
-        show={showCommentModal}
-        className="modal"
-        tabIndex="-1"
-        role="dialog"
-      >
-        <div className="modal-dialog modal-xl w-100" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="modalTitle">
-                Comments
-              </h5>
+        </Modal>
+        <Modal
+          size="md"
+          show={showCommentModal}
+          className="modal"
+          tabIndex="-1"
+          role="dialog"
+        >
+          <div className="modal-dialog modal-xl w-100" role="document">
+            <div className="modal-content">
+              <div className="modal-header frame">
+                <h5 className="modal-title" id="modalTitle">
+                  Comments
+                </h5>
+                <button
+                  type="button"
+                  className="close proBtn"
+                  aria-label="Close"
+                  onClick={() => closeCommentModal()}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                {comments.map((item, key) => (
+                  <div className="flexAway" key={item.author + item.comment}>
+                    <div className="frame marg pad">
+                      <b className="">{item.author}</b>: {item.comment}
+                    </div>
+                    &nbsp;
+                    {username === item.author ? (
+                      <button
+                        className="cusButton"
+                        onClick={() => handleRemoveComment(key)}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ))}
+              </div>
+              <textarea
+                className="darkFrame"
+                onChange={handleCommentText}
+                placeholder="Write your comment..."
+                value={commentText}
+              ></textarea>
+
               <button
                 type="button"
-                className="close"
+                className="close mt-3 proBtn"
                 aria-label="Close"
-                onClick={() => closeCommentModal()}
+                onClick={() => handleAddComment()}
               >
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">Post comment</span>
               </button>
             </div>
-            <div className="modal-body text-center">
-              {comments.map((item, key) => (
-                <div key={item.author + item.comment}>
-                  <b>{item.author}</b>: {item.comment}
-                  &nbsp;
-                  {username === item.author ? (
-                    <button onClick={() => handleRemoveComment(key)}>Delete Comment</button>
-                  ) : ''}
-                </div>
-              ))}
-            </div>
-            <textarea onChange={handleCommentText} placeholder="Write your comment..." value={commentText}></textarea>
-            <button
-              type="button"
-              className="close mt-3"
-              aria-label="Close"
-              onClick={() => handleAddComment()}
-            >
-              <span aria-hidden="true">Post comment</span>
-            </button>
           </div>
-        </div>
-      </Modal>
-    </section>
-  );
+        </Modal>
+      </section>
+    );
+  }
 }
 
 export default Listings;
