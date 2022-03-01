@@ -118,6 +118,7 @@ function Dashboard() {
         <div className="nameCard" style={cardStyle}>
           <h1 className="">Welcome, {user.data?.me.username}</h1>
 
+
           <button
             className="proBtn"
             onClick={() => window.location.replace("/addListing")}
@@ -131,6 +132,7 @@ function Dashboard() {
           >
             Edit Profile
           </button>
+
         </div>
         <Modal
           size="lg"
@@ -151,7 +153,12 @@ function Dashboard() {
             <Modal.Body>
               <Tab.Content>
                 <Tab.Pane eventKey="EditProfile">
-                  <EditProfile handleModalClose={() => setEditModal(false)} />
+
+
+                  <EditProfile
+                    handleModalClose={() => setEditModal(false)}
+                  />
+
                 </Tab.Pane>
               </Tab.Content>
             </Modal.Body>
@@ -172,32 +179,40 @@ function Dashboard() {
         <h3>Your Toy Listings:</h3>
       </div>
 
-      {toys.data?.toys.map((e) => {
-        if (checkUser(e.owner)) {
-          return (
-            <div
-              className="right card gap"
-              style={cardStyle}
-              key={e.name + e.description + e.price}
-            >
-              <div className="polaroid">
-                <img
-                  className="card-img-top cardImage"
-                  src={e.imageURL}
-                  style={imgStyle}
-                  alt="Auto Parts Website"
-                />
-              </div>
-              <div className="card-body">
-                <h5 className="card-title">{e.name}</h5>
-                <button onClick={() => deleteToy(e._id)} className="cusButton">
-                  Delete listing
-                </button>
-              </div>
-            </div>
-          );
-        }
-      })}
+
+      {
+        toys.data?.toys.map((e) => (
+          <div key={e._id}>
+            {
+              checkUser(e.owner)
+                ?
+                <div
+                  className="right card gap"
+                  style={cardStyle}
+                  key={e.name + e.description + e.price}
+                >
+                  <div className="polaroid">
+                    <img
+                      className="card-img-top cardImage"
+                      src={e.imageURL}
+                      style={imgStyle}
+                      alt="Auto Parts Website"
+                    />
+                  </div>
+                  <div className="card-body">
+                    <h5 className="card-title">{e.name}</h5>
+                    <button onClick={() => deleteToy(e._id)} className="cusButton">
+                      Delete listing
+                    </button>
+                  </div>
+                </div>
+                :
+                <div></div>
+            }
+          </div>
+        ))
+      }
+
     </section>
   );
 }

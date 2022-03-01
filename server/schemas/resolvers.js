@@ -65,7 +65,6 @@ const resolvers = {
             const toy = await Toys.create({ name, price, imageURL, owner, description });
             return toy;
         },
-        ///////
         editUser: async (parent, { username, location }, context) => {
             const userdata = await User.findById(context.user._id);
             if (!userdata) {
@@ -83,7 +82,6 @@ const resolvers = {
                 {$set: {username: username , location: location }});
             return user;
         },
-        ///////
         removeToy: async (parent, { _id }) => {
             const toy = await Toys.findOneAndDelete({ _id: _id });
             return toy;
