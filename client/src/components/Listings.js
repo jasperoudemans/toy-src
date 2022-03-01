@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
-import Auth from "../utils/auth";
 
 import { GET_TOYS } from "../utils/queries";
 import { useQuery } from '@apollo/client';
@@ -69,8 +68,6 @@ function Listings() {
       const newComments = [...comments]
       newComments.splice(index, 1)
       setComments([ ...newComments ])
-      const toy = listings.find(x => x._id === toyId)
-      toy.comments = newComments
     }
     catch (error) {
       console.error(error);
@@ -80,6 +77,7 @@ function Listings() {
 
   const closeToyModal = () => {
     setModal(false);
+    window.location.assign('/#findtoys');
   };
 
   const showToyModal = (name, imageURL, price, owner, description, comments, toyId) => {
