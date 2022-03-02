@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { QUERY_ME, } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import "../dashboard.css";
 import { EDIT_PROFILE } from "../utils/mutations";
@@ -12,6 +12,19 @@ const cardStyle = {
 };
 
 const EditProfile = () => {
+  const user = useQuery(QUERY_ME);
+  const [editUser, { error }] = useMutation(EDIT_PROFILE);
+
+  const [userFormData, setUserFormData] = useState({
+    username: user.data?.me.username,
+    email: user.data?.me.email,
+    location: user.data?.me.location,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
 
   const user = useQuery(QUERY_ME);
   const [editUser, { error }] = useMutation(EDIT_PROFILE);
@@ -31,6 +44,7 @@ const EditProfile = () => {
 
 
     try {
+
       const data = await editUser({
         variables: { ...userFormData },
       });
@@ -47,19 +61,38 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="sideWays">
+    <div>
       <div className="nameCard" style={cardStyle}>
         <h1 className="">Welcome, {userFormData.username}</h1>
         <h5 className="">Email: {userFormData.email}</h5>
       </div>
       <div className="nameCard" style={cardStyle}>
-        <h5 className="">UserName: <input type="text" value={userFormData.username} name="username" onChange={handleInputChange} /> </h5>
-        <h5 className="">location: <input type="text" value={userFormData.location} name="location" onChange={handleInputChange} /> </h5>
+        <h5 className="">
+          Username:{" "}
+          <input
+            type="text"
+            className="frame pad"
+            value={userFormData.username}
+            name="username"
+            onChange={handleInputChange}
+          />{" "}
+        </h5>
+        <h5 className="">
+          location:{" "}
+          <input
+            type="text"
+            className="frame pad"
+            value={userFormData.location}
+            name="location"
+            onChange={handleInputChange}
+          />{" "}
+        </h5>
       </div>
-      <button onClick={handleSubmit}>Save Changes</button>
+      <button className="proBtn" onClick={handleSubmit}>
+        Save Changes
+      </button>
     </div>
-
-  )
-}
+  );
+};
 
 export default EditProfile;
