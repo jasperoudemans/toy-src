@@ -123,9 +123,6 @@ function Listings() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        console.log(users);
-        console.log(listings);
         const filteredListings = listings.filter((item) => {
           const owner = users.find((user) => user.username === item.owner);
           const isInRadius = data.zip_codes.some((zipcode) => {
@@ -136,10 +133,7 @@ function Listings() {
         setFilteredListings(filteredListings);
       });
   };
-  console.log(listings);
-  console.log(filteredListings);
   const handleZipCode = () => {
-    console.log({ user });
     getZipCodes(user.location);
   };
 
@@ -155,7 +149,13 @@ function Listings() {
         <div className="row">
           <div className="col text-center">
             <h1 className="sectionTitle">Toy Listings</h1>
-            <button onClick={() => handleZipCode()}>Filter Local Only</button>
+            {
+              AUTH.loggedIn()
+                ?
+                <button onClick={() => handleZipCode()}>Filter Local Only</button>
+                :
+                <div></div>
+            }
           </div>
         </div>
         <div className="row">

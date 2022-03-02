@@ -8,6 +8,8 @@ import { Nav, Modal, Tab } from "react-bootstrap";
 
 import checkSRC from "../img/check.png";
 
+import AUTH from "../utils/auth";
+
 const cardStyle = {
   border: "solid rgb(199, 199, 199) 2px",
   display: "flex",
@@ -26,12 +28,15 @@ const checkStyle = {
 };
 
 function Dashboard() {
+  if (!AUTH.loggedIn()) {
+    window.location.replace("/")
+  }
+
   const [checkComment] = useMutation(CHECK_COMMENT);
   const [removeToy] = useMutation(REMOVE_TOY);
   const [showEditModal, setEditModal] = useState(false);
 
   const deleteToy = (data) => {
-    console.log(data);
     removeToy({
       variables: { id: data },
     });
