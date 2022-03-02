@@ -138,8 +138,7 @@ function Dashboard() {
           </button>
           <button
             className="proBtn"
-            eventkey="EditProfile"
-            onClick={() => setEditModal(true)}
+            onClick={AUTH.logout}
           >
             Log out
           </button>
