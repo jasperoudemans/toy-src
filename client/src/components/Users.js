@@ -8,11 +8,17 @@ import { INCREASE_REPUTATION, LOWER_REPUTATION } from "../utils/mutations";
 import "../users.css";
 import starSRC from "../img/starOption.png";
 
+import AUTH from "../utils/auth";
+
 const listStyle = {
   listStyleType: "none",
 };
 
 function Users() {
+  if (!AUTH.loggedIn()) {
+    window.location.replace("/")
+  }
+
   const [raiseRep] = useMutation(INCREASE_REPUTATION);
   const [lowerRep] = useMutation(LOWER_REPUTATION);
 

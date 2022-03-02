@@ -6,16 +6,16 @@ import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 
 const SignupForm = () => {
- 
+
   const [userFormData, setUserFormData] = useState({
     username: "",
     email: "",
     password: "",
     location: "",
   });
-  
+
   const [validated] = useState(false);
-  
+
   const [showAlert, setShowAlert] = useState(false);
 
   const [addUser, { error }] = useMutation(ADD_USER);
@@ -28,7 +28,7 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -55,9 +55,9 @@ const SignupForm = () => {
 
   return (
     <>
-      
+
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-       
+
         <Alert
           dismissible
           onClose={() => setShowAlert(false)}

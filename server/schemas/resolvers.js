@@ -71,15 +71,15 @@ const resolvers = {
                 throw new AuthenticationError('Unable to get user data for editing user');
             }
             const result = await Toys.updateMany(
-               {owner: userdata.username},
-               {owner: username}
+                { owner: userdata.username },
+                { owner: username }
             );
             if (!result) {
                 throw new AuthenticationError('Unable to update toy listings to new name');
             }
-            const user = await User.findOneAndUpdate( 
+            const user = await User.findOneAndUpdate(
                 { _id: context.user._id },
-                {$set: {username: username , location: location }});
+                { $set: { username: username, location: location } });
             return user;
         },
         removeToy: async (parent, { _id }) => {

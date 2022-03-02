@@ -26,9 +26,25 @@ const EditProfile = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+  const user = useQuery(QUERY_ME);
+  const [editUser, { error }] = useMutation(EDIT_PROFILE);
+
+  const [userFormData, setUserFormData] = useState({
+    username: user.data?.me.username,
+    email: user.data?.me.email,
+    location: user.data?.me.location
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
   const handleSubmit = async (event) => {
+
+
     try {
-      console.log(userFormData);
+
       const data = await editUser({
         variables: { ...userFormData },
       });
