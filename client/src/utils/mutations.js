@@ -81,7 +81,7 @@ mutation Mutation($id: ID!) {
 
 }`;
 
-export const EDIT_PROFILE =gql `
+export const EDIT_PROFILE = gql`
 mutation editUser($username: String!, $location: String!) {
   editUser(username: $username, location: $location) {
     username

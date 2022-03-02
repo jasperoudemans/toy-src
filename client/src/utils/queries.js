@@ -10,7 +10,7 @@ query users {
         hasReview
     }
 }
-`
+`;
 export const GET_TOYS = gql`
 query toys {
     toys {
@@ -28,7 +28,7 @@ query toys {
         }
     }
 }
-`
+`;
 
 export const QUERY_ME = gql`
 query me {

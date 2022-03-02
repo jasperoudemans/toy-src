@@ -87,3 +87,18 @@ body {
   background-color: rgb(123, 156, 170);
   color: white;
 }
+
+.red {
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 2px solid var(--border-color);
+}
+
+.rule {
+  border-top: 2px solid black;
+}
+
+.center {
+  text-align: center;
+  display: inline-block;
+}

@@ -213,3 +213,84 @@ section {
   cursor: pointer;
   background-color: grey;
 }
+
+.close {
+}
+
+.pad {
+  padding: 0.5rem;
+}
+
+.frame {
+  border: 2px solid rgb(199, 199, 199);
+  border-radius: 4px;
+}
+
+.darkFrame {
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.proBtn {
+  background-color: white;
+  color: black;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  transition: background-color 200ms, color 200ms ease-in-out;
+}
+
+.proBtn:hover {
+  background-color: rgb(123, 156, 170);
+  color: white;
+}
+
+.flexBlock {
+  min-width: 30%;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.marg {
+  margin-bottom: 0.5rem;
+}
+
+.flexAway {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cusButton {
+  background-color: white;
+  color: black;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  transition: background-color 200ms, color 200ms ease-in-out;
+}
+
+.cusButton:hover {
+  /* background-color: rgb(201, 56, 56); */
+  background-color: rgb(235, 109, 109);
+  color: white;
+}
+
+.casButton {
+  background-color: white;
+  color: black;
+  max-height: 2.8rem;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  transition: background-color 200ms, color 200ms ease-in-out;
+}
+
+.casButton:hover {
+  /* background-color: rgb(201, 56, 56); */
+  background-color: rgb(235, 109, 109);
+  color: white;
+}

@@ -65,16 +65,23 @@ const resolvers = {
             const toy = await Toys.create({ name, price, imageURL, owner, description });
             return toy;
         },
-        ///////
         editUser: async (parent, { username, location }, context) => {
-            const user = await User.findOneAndUpdate( 
+            const userdata = await User.findById(context.user._id);
+            if (!userdata) {
+                throw new AuthenticationError('Unable to get user data for editing user');
+            }
+            const result = await Toys.updateMany(
+                { owner: userdata.username },
+                { owner: username }
+            );
+            if (!result) {
+                throw new AuthenticationError('Unable to update toy listings to new name');
+            }
+            const user = await User.findOneAndUpdate(
                 { _id: context.user._id },
-                {$set: {username: username , location: location }});
-
- 
+                { $set: { username: username, location: location } });
             return user;
         },
-        ///////
         removeToy: async (parent, { _id }) => {
             const toy = await Toys.findOneAndDelete({ _id: _id });
             return toy;

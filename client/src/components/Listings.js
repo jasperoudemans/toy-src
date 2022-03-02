@@ -2,15 +2,22 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Toy from "./Toy";
 
-import { GET_TOYS } from "../utils/queries";
-import { useQuery } from '@apollo/client';
+import { GET_TOYS, QUERY_ME, GET_USERS } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_COMMENT, REMOVE_COMMENT } from "../utils/mutations";
+
+import AUTH from "../utils/auth";
+
+const key =
+  "js-YrLnDMcwi8HeD6uKaC0Fh6PiDDLKYStGoP0T03hjjsOI9HmZ8ubr5EK6Vf9EgpFA";
+const units = "miles";
+const format = "json";
 
 const modalImageStyle = {
   maxHeight: "600px",
   width: "100%",
-  marginBottom: '24px'
+  marginBottom: "24px",
 };
 
 const listStyle = {
@@ -22,10 +29,14 @@ function Listings() {
   const [removeComment] = useMutation(REMOVE_COMMENT);
   const [commentText, setCommentText] = useState("");
 
-  const { loading, data } = useQuery(GET_TOYS, {
+  const data = useQuery(GET_TOYS);
+  const listings = data.data?.toys || [];
 
-  });
-  const listings = data?.toys || [];
+  const data2 = useQuery(QUERY_ME);
+  const user = data2.data?.me || "";
+
+  const data3 = useQuery(GET_USERS);
+  const users = data3.data?.users || [];
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -33,54 +44,61 @@ function Listings() {
   const [owner, setOwner] = useState("");
   const [description, setDescription] = useState("");
   const [comments, setComments] = useState([]);
+  const [filteredListings, setFilteredListings] = useState();
 
-  const [toyId, setToyId] = useState('');
+  const [toyId, setToyId] = useState("");
 
   const [showModal, setModal] = useState(false);
 
-  const username = localStorage.getItem('username')
+  const username = localStorage.getItem("username");
 
-  async function handleAddComment () {
+  async function handleAddComment() {
     const newComment = {
       id: toyId,
       comment: commentText,
-      author: username
-    }
+      author: username,
+    };
     try {
       await addComment({
         variables: newComment,
-      })
-      setComments([ ...comments, newComment ])
-      setCommentText('')
-    }
-    catch (e) {
+      });
+      setComments([...comments, newComment]);
+      setCommentText("");
+    } catch (e) {
       console.error(error);
     }
   }
-  function handleCommentText (event) {
-    setCommentText(event.target.value)
+  function handleCommentText(event) {
+    setCommentText(event.target.value);
   }
-  async function handleRemoveComment (index) {
+  async function handleRemoveComment(index) {
     try {
       await removeComment({
         variables: { id: toyId, index },
-      })
-      const newComments = [...comments]
-      newComments.splice(index, 1)
-      setComments([ ...newComments ])
-    }
-    catch (error) {
+      });
+      const newComments = [...comments];
+      newComments.splice(index, 1);
+      setComments([...newComments]);
+    } catch (error) {
       console.error(error);
-      // setShowAlert(true);
     }
   }
 
   const closeToyModal = () => {
     setModal(false);
-    window.location.assign('/#findtoys');
+    window.location.assign("/#findtoys");
+    window.location.reload();
   };
 
-  const showToyModal = (name, imageURL, price, owner, description, comments, toyId) => {
+  const showToyModal = (
+    name,
+    imageURL,
+    price,
+    owner,
+    description,
+    comments,
+    toyId
+  ) => {
     setName(name);
     setPrice(price);
     setImageURL(imageURL);
@@ -96,25 +114,56 @@ function Listings() {
   const closeCommentModal = () => {
     setCommentModal(false);
   };
-  if (loading) {
+  const getZipCodes = (zipCode, radius = 30) => {
+    fetch(
+      `https://www.zipcodeapi.com/rest/${key}/radius.${format}/${zipCode}/${radius}/${units}`,
+      {}
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const filteredListings = listings.filter((item) => {
+          const owner = users.find((user) => user.username === item.owner);
+          const isInRadius = data.zip_codes.some((zipcode) => {
+            return zipcode.zip_code === owner.location;
+          });
+          return isInRadius;
+        });
+        setFilteredListings(filteredListings);
+      });
+  };
+  const handleZipCode = () => {
+    getZipCodes(user.location);
+  };
+
+  if (data.loading) {
     return (
       <div>
-        <h1>
-          LOADING CONTENT
-        </h1>
+        <h1>LOADING CONTENT</h1>
       </div>
-    )
-  }
-  else {
+    );
+  } else {
     return (
       <section id="findtoys" className="mainSection container">
         <div className="row">
           <div className="col text-center">
             <h1 className="sectionTitle">Toy Listings</h1>
+
+            {
+              AUTH.loggedIn()
+                ?
+                <button className="znavBtn center" onClick={() => handleZipCode()}>
+              Filter Local Only
+            </button>
+                :
+                <div></div>
+            }
+
           </div>
         </div>
         <div className="row">
-          {listings.map((e) => (
+          {(filteredListings || listings).map((e) => (
             <div className="col" key={e.name + e.price + e.owner + e.imageURL}>
               <Toy
                 name={e.name}
@@ -122,7 +171,17 @@ function Listings() {
                 price={e.price}
                 owner={e.owner}
                 description={e.description}
-                showToyModal={() => showToyModal(e.name, e.imageURL, e.price, e.owner, e.description, e.comments, e._id)}
+                showToyModal={() =>
+                  showToyModal(
+                    e.name,
+                    e.imageURL,
+                    e.price,
+                    e.owner,
+                    e.description,
+                    e.comments,
+                    e._id
+                  )
+                }
               />
             </div>
           ))}
@@ -138,13 +197,13 @@ function Listings() {
         >
           <div className="modal-dialog modal-xl w-100" role="document">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className="modal-header frame">
                 <h5 className="modal-title" id="modalTitle">
                   {name}
                 </h5>
                 <button
                   type="button"
-                  className="close"
+                  className="close proBtn"
                   aria-label="Close"
                   onClick={() => closeToyModal()}
                 >
@@ -158,12 +217,16 @@ function Listings() {
                   <li key="id2">Owner: {owner}</li>
                   <li key="id3">Description: {description}</li>
                   <li key="id4">
-                    <button
-                      className="btnBlack"
-                      onClick={() => setCommentModal(true)}
-                    >
-                      Comments
-                    </button>
+                    {AUTH.loggedIn() ? (
+                      <button
+                        className="proBtn pad"
+                        onClick={() => setCommentModal(true)}
+                      >
+                        Comments
+                      </button>
+                    ) : (
+                      <h1>You must be logged in to view comments</h1>
+                    )}
                   </li>
                 </ul>
                 <div></div>
@@ -180,34 +243,49 @@ function Listings() {
         >
           <div className="modal-dialog modal-xl w-100" role="document">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className="modal-header frame">
                 <h5 className="modal-title" id="modalTitle">
                   Comments
                 </h5>
                 <button
                   type="button"
-                  className="close"
+                  className="close proBtn"
                   aria-label="Close"
                   onClick={() => closeCommentModal()}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body text-center">
+              <div className="modal-body">
                 {comments.map((item, key) => (
-                  <div key={item.author+item.comment}>
-                    <b>{item.author}</b>: {item.comment}
+                  <div className="flexAway" key={item.author + item.comment}>
+                    <div className="frame marg pad">
+                      <b className="">{item.author}</b>: {item.comment}
+                    </div>
                     &nbsp;
                     {username === item.author ? (
-                      <a href="#" onClick={() => handleRemoveComment(key)}>Delete Comment</a>
-                    ) : ''}
+                      <button
+                        className="casButton"
+                        onClick={() => handleRemoveComment(key)}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 ))}
               </div>
-              <textarea onChange={handleCommentText} placeholder="Write your comment..." value={commentText}></textarea>
+              <textarea
+                className="darkFrame"
+                onChange={handleCommentText}
+                placeholder="Write your comment..."
+                value={commentText}
+              ></textarea>
+
               <button
                 type="button"
-                className="close mt-3"
+                className="close mt-3 proBtn"
                 aria-label="Close"
                 onClick={() => handleAddComment()}
               >

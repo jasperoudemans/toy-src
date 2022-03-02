@@ -1,5 +1,3 @@
-//import React, { useState } from "react";
-
 const cardStyle = {
   width: "18rem",
   border: "solid rgb(199, 199, 199) 2px",
@@ -12,7 +10,6 @@ const imgStyle = {
   width: "18rem",
   borderRadius: "2px",
 };
-//shadow-lg h-100 are classes I took out of top div
 
 function Toy({ name, imageURL, price, owner, description, showToyModal }) {
   return (
