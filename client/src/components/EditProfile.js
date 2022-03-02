@@ -3,7 +3,7 @@ import { QUERY_ME, } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import "../dashboard.css";
 import { EDIT_PROFILE } from "../utils/mutations";
-import Auth from "../utils/auth";
+
 
 const cardStyle = {
     border: "solid rgb(199, 199, 199) 2px",
