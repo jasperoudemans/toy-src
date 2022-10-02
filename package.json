@@ -2,6 +2,7 @@
   "name": "toy-src",
   "version": "0.1.0",
   "private": true,
+  "engines": {"node": "16.x"},
   "dependencies": {
     "concurrently": "^7.0.0"
   },
@@ -10,6 +11,7 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
-    "seed": "cd server && npm run seed"
+    "seed": "cd server && npm run seed",
+    "deploy": "fly deploy"
   }
 }
