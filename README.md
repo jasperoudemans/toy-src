@@ -16,6 +16,8 @@ Toy trading website where users can sign up and buy/sell toys with other users
  ## Links
 https://github.com/jasperoudemans/toy-src
 
+https://toy-src.fly.dev/
+
 https://toy-src.herokuapp.com/
 
 Screenshot1:
